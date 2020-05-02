@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Kyoung Whan Choe">
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Hello-world - jsPsych in Qualtrics</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Hello-world";
+    var mkdocs_page_input_path = "hello-world.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-102316-3', 'auto');
+      ga('send', 'pageview');
+  </script>
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> jsPsych in Qualtrics</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Introduction</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Hello-world</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#step-1-download-the-jspsych-library">Step 1: Download the jsPsych library</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#step-2-create-a-folder-to-store-your-experiment-files">Step 2: Create a folder to store your experiment files</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#step-3-create-a-new-html-file">Step 3: Create a new HTML file</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#step-4-add-the-bare-minimum-html-code">Step 4: Add the bare-minimum HTML code</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#step-5-import-the-jspsych-library">Step 5: Import the jsPsych library</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#step-6-use-the-jspsych-html-keyboard-response-plugin-to-print-a-message">Step 6: Use the jspsych-html-keyboard-response plugin to print a message</a>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../rt-task/">Reaction-time task</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../flanker/">Flanker task</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../n-back/">N-back task</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../dichotic-listening/">Dicotic-listening</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">jsPsych in Qualtrics</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Hello-world</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="jspsych-hello-world-experiment">jsPsych "Hello world" experiment</h1>
+<p>In the long tradition of <strong>"Hello world!"</strong> examples, this tutorial creates an experiment that outputs the phrase "Hello world!" to the browser. Though useless as an actual experiment, the process is helpful for learning the basics of using the jsPsych library. This tutorial will assume that you know very little about how to set up a web page.</p>
+<h2 id="step-1-download-the-jspsych-library">Step 1: Download the jsPsych library</h2>
+<p>Start by downloading the jsPsych library. The most recent version can always be found on the <a href="https://github.com/jodeleeuw/jsPsych/releases">GitHub releases page</a>.</p>
+<p><em>Note: the image below shows version 4.2, but the process is the same for the most recent version.</em></p>
+<p><img alt="releasespage" src="/img/githubreleases.jpg" /></p>
+<h2 id="step-2-create-a-folder-to-store-your-experiment-files">Step 2: Create a folder to store your experiment files</h2>
+<p>Create a folder on your computer to put the experiment files in. Once you've created the folder, open the downloaded archive from step 1, and move the extracted folder (called <code>jspsych-6.0.5</code> if using v6.0.5 of jsPsych) into the experiment folder. Here's what it looks like on a Windows machine:</p>
+<p><img alt="folder setup" src="/img/folder-setup.png" /></p>
+<h2 id="step-3-create-a-new-html-file">Step 3: Create a new HTML file</h2>
+<p>To edit jsPsych code you'll need a programming-friendly text editor. Some free options are:</p>
+<ul>
+<li><a href="https://atom.io">Atom</a> (Windows, OSX, Linux)</li>
+<li><a href="https://code.visualstudio.com/">VSCode</a> (Windows, OSX, Linux)</li>
+</ul>
+<p>Once you've got a text editor that you like, create a new file in the experiment folder called <code>experiment.html</code></p>
+<p><img alt="folder setup" src="/img/folder-with-html.png" /></p>
+<h2 id="step-4-add-the-bare-minimum-html-code">Step 4: Add the bare-minimum HTML code</h2>
+<p>There's some basic code that (nearly) all HTML documents have in common. Here's a typical bare-bones HTML document.</p>
+<pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;My experiment&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>Add the above code to the experiment.html file and save it. If you then open the file in a web browser, you should see a blank page and the title of the page will be 'My experiment'.</p>
+<h2 id="step-5-import-the-jspsych-library">Step 5: Import the jsPsych library</h2>
+<p>To use jsPsych, add a <code>&lt;script&gt;</code> tag to import the library.</p>
+<pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;My experiment&lt;/title&gt;
+        &lt;script src=&quot;jspsych-6.0.5/jspsych.js&quot;&gt;&lt;/script&gt;
+    &lt;/head&gt;
+    &lt;body&gt;&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>You may also want to import the jsPsych stylesheet, which applies a basic set of visual styles to the experiment to make it visually pleasing. This requires adding a <code>&lt;link&gt;</code> tag to the <code>&lt;head&gt;</code> section of the document.</p>
+<pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;My experiment&lt;/title&gt;
+        &lt;script src=&quot;jspsych-6.0.5/jspsych.js&quot;&gt;&lt;/script&gt;
+        &lt;link href=&quot;jspsych-6.0.5/css/jspsych.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;&gt;&lt;/link&gt;
+    &lt;/head&gt;
+    &lt;body&gt;&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<h2 id="step-6-use-the-jspsych-html-keyboard-response-plugin-to-print-a-message">Step 6: Use the jspsych-html-keyboard-response plugin to print a message</h2>
+<p>For the demo, we want to show some text on the screen. This is exactly what the <a href="../plugins/jspsych-html-keyboard-response.md">jspsych-html-keyboard-response plugin</a> is designed to do. To use the plugin, we need to load it with a <code>&lt;script&gt;</code> tag.</p>
+<pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;My experiment&lt;/title&gt;
+        &lt;script src=&quot;jspsych-6.0.5/jspsych.js&quot;&gt;&lt;/script&gt;
+        &lt;script src=&quot;jspsych-6.0.5/plugins/jspsych-html-keyboard-response.js&quot;&gt;&lt;/script&gt;
+        &lt;link href=&quot;jspsych-6.0.5/css/jspsych.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;&gt;&lt;/link&gt;
+    &lt;/head&gt;
+    &lt;body&gt;&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>Once the plugin is loaded, we can create an experiment using the plugin. To declare a trial that uses the html-keyboard-response plugin, we create a JavaScript object with the property <code>type</code> equal to <code>'html-keyboard-response'</code>. Then we can specify the other parameters of the plugin in the same object.</p>
+<p>To add JavaScript code directly to the webpage we need to add a set of <code>&lt;script&gt;</code> tags after the <code>&lt;body&gt;</code> tags.</p>
+<pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;My experiment&lt;/title&gt;
+        &lt;script src=&quot;jspsych-6.0.5/jspsych.js&quot;&gt;&lt;/script&gt;
+        &lt;script src=&quot;jspsych-6.0.5/plugins/jspsych-html-keyboard-response.js&quot;&gt;&lt;/script&gt;
+        &lt;link href=&quot;jspsych-6.0.5/css/jspsych.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;&gt;&lt;/link&gt;
+    &lt;/head&gt;
+    &lt;body&gt;&lt;/body&gt;
+    &lt;script&gt;
+
+    var hello_trial = {
+        type: 'html-keyboard-response',
+        stimulus: 'Hello world!'
+    }
+
+    &lt;/script&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>Now that we have the trial defined we just need to tell jsPsych to run an experiment consisting of this trial. This requires using the <code>jsPsych.init</code> function and specifying the <code>timeline</code> parameter.</p>
+<pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;My experiment&lt;/title&gt;
+        &lt;script src=&quot;jspsych-6.0.5/jspsych.js&quot;&gt;&lt;/script&gt;
+        &lt;script src=&quot;jspsych-6.0.5/plugins/jspsych-html-keyboard-response.js&quot;&gt;&lt;/script&gt;
+        &lt;link href=&quot;jspsych-6.0.5/css/jspsych.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;&gt;&lt;/link&gt;
+    &lt;/head&gt;
+    &lt;body&gt;&lt;/body&gt;
+    &lt;script&gt;
+
+    var hello_trial = {
+        type: 'html-keyboard-response',
+        stimulus: 'Hello world!'
+    }
+
+    jsPsych.init({
+        timeline: [hello_trial]
+    })
+
+    &lt;/script&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>Once you've saved the file, open it in a browser. You should see "Hello world!" printed on the screen, and if you press a key on the keyboard, the text should disappear (ending the trial).</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../rt-task/" class="btn btn-neutral float-right" title="Reaction-time task">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href=".." class="btn btn-neutral" title="Introduction"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../rt-task/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
