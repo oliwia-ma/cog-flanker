@@ -128,19 +128,17 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#third-transformation-demo-simple-rt-task-qualtricsjs">Third transformation: demo-simple-rt-task-qualtrics.js</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#change-1-the-question-javascript-skeleton">Change 1: The Question JavaScript skeleton</a>
+    <li class="toctree-l3"><a class="reference internal" href="#change-1-hide-the-next-button">Change 1: Hide the Next button</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#change-2-hide-the-next-button">Change 2: Hide the Next button</a>
+    <li class="toctree-l3"><a class="reference internal" href="#change-2-define-and-load-required-resources">Change 2: Define and load required resources</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#change-3-define-and-load-required-resources">Change 3: Define and load required resources</a>
+    <li class="toctree-l3"><a class="reference internal" href="#change-3-append-the-display_stage-div-using-jquery">Change 3: Append the display_stage Div using jQuery</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#change-4-append-the-display_stage-div-using-jquery">Change 4: Append the display_stage Div using jQuery</a>
+    <li class="toctree-l3"><a class="reference internal" href="#change-4-wrap-jspsychinit-in-a-function">Change 4: Wrap jsPsych.init() in a function</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#change-5-wrap-jspsychinit-in-a-function">Change 5: Wrap jsPsych.init() in a function</a>
+    <li class="toctree-l3"><a class="reference internal" href="#change-5-summarize-and-save-the-results-to-qualtrics">Change 5: Summarize and save the results to Qualtrics</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#change-6-summarize-and-save-the-results-to-qualtrics">Change 6: Summarize and save the results to Qualtrics</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#change-7-add-the-clean-up-and-continue-functions">Change 7: Add the clean up and continue functions</a>
+    <li class="toctree-l3"><a class="reference internal" href="#change-6-add-the-clean-up-and-continue-functions">Change 6: Add the clean up and continue functions</a>
     </li>
         </ul>
     </li>
@@ -394,10 +392,10 @@ var repo_site = &quot;https://kywch.github.io/Simple-RT-Task/&quot;;
 <p>If the above link works, then it also means that the experiment-related code, <code>rt-task_main.js</code>, is also available for Qualtrics to load. You can actually access it by going to <code>https://&lt;your-github-username&gt;.github.io/&lt;your-experiment-name&gt;/rt-task_main.js</code>. For example, <a href='https://kywch.github.io/Simple-RT-Task/rt-task_main.js'>https://kywch.github.io/Simple-RT-Task/rt-task_main.js</a>.</p>
 <hr />
 <h2 id="second-transformation-demo-simple-rt-task-transformed-with-display-elementhtml">Second transformation: <code>demo-simple-rt-task-transformed-with-display-element.html</code></h2>
-<p>The <code>demo-simple-rt-task-transformed-with-display-element.html</code> file in this repository contains three changes from the <code>demo-simple-rt-task-transformed.html</code>. When you open <code>demo-simple-rt-task-transformed-with-display-element.html</code> in a browser, you should see the same reaction time task. </p>
+<p>Adding the <code>display_element</code> parameter in the <code>jsPsych.init()</code> and having additional control over the display element is important for embedding jsPsych into Qualtrics. The <code>demo-simple-rt-task-transformed-with-display-element.html</code> file in <a href="https://github.com/kywch/jsPsych-in-Qualtrics/blob/master/rt-task/demo-simple-rt-task-transformed-with-display-element.html">this GitHub repository</a> contains three changes from the <code>demo-simple-rt-task-transformed.html</code>. When you open <code>demo-simple-rt-task-transformed-with-display-element.html</code> in a browser, you should see the same reaction time task. </p>
 <p>Let's look at each change.</p>
 <h3 id="change-1-using-display_element">Change 1: Using <code>display_element</code></h3>
-<p>By adding the <code>display_element</code> parameter in the <code>jsPsych.init()</code> like below, you can have additional control over the display element, which is important in embedding jsPsych into Qualtrics. In the below example, jsPsych will render the experiment in the <code>&lt;div&gt;</code> called <code>display_stage</code>, which the current script does not have yet. So, let's add the <code>display_stage</code>.</p>
+<p>By adding the <code>display_element</code> parameter in the <code>jsPsych.init()</code> like below, jsPsych will render the experiment in the <code>&lt;div&gt;</code> called <code>display_stage</code>, which the current script does not have yet. So, let's add the <code>display_stage</code>.</p>
 <pre><code class="js">/* start the experiment */
 jsPsych.init({
 timeline: timeline,
@@ -458,10 +456,7 @@ on_finish: function () {
 
 <hr />
 <h2 id="third-transformation-demo-simple-rt-task-qualtricsjs">Third transformation: <code>demo-simple-rt-task-qualtrics.js</code></h2>
-<p>The <code>demo-simple-rt-task-qualtrics.js</code> file in this repository contains several changes from <code>demo-simple-rt-task-qualtrics.html</code> and can be put into Qualtrics. By separating the experiment-related code from the operation-related code, converting the html file to Qualtrics JavaScript function is pretty much similar to <a href="../hello-world/#second-transformation-qualtricsjs">the Hello-World example</a>.</p>
-<p>Let's look at each change.</p>
-<h3 id="change-1-the-question-javascript-skeleton">Change 1: The Question JavaScript skeleton</h3>
-<p>You need to add your experiment codes to the skeleton provided by Qualtrics Question JavaScript Editor. For details, see the <a href="https://www.qualtrics.com/support/survey-platform/survey-module/question-options/add-javascript/">Add JavaScript help page</a>.</p>
+<p>To make your jsPsych experiment work in Qualtrics, you need to add your code to the below skeleton provided by Qualtrics Question JavaScript Editor. For details, see the <a href="https://www.qualtrics.com/support/survey-platform/survey-module/question-options/add-javascript/">Add JavaScript help page</a>.</p>
 <pre><code class="js">Qualtrics.SurveyEngine.addOnload(function()
 {
     /*Place your JavaScript here to run when the page loads*/
@@ -481,7 +476,9 @@ Qualtrics.SurveyEngine.addOnUnload(function()
 });
 </code></pre>
 
-<h3 id="change-2-hide-the-next-button">Change 2: Hide the Next button</h3>
+<p>The <code>demo-simple-rt-task-qualtrics.js</code> file in <a href="https://github.com/kywch/jsPsych-in-Qualtrics/blob/master/rt-task/demo-simple-rt-task-qualtrics.js">this GitHub repository</a> contains several changes from <code>demo-simple-rt-task-qualtrics.html</code> and can be put into Qualtrics. By separating the experiment-related code from the operation-related code, converting the html file to Qualtrics JavaScript function is pretty much similar to <a href="../hello-world/#second-transformation-qualtricsjs">the Hello-World example</a>.</p>
+<p>Let's look at each change.</p>
+<h3 id="change-1-hide-the-next-button">Change 1: Hide the Next button</h3>
 <p>The below javascript code hides the Next button and puts the javascript code in the driving seat.</p>
 <pre><code class="js">// Retrieve Qualtrics object and save in qthis
 var qthis = this;
@@ -490,7 +487,7 @@ var qthis = this;
 qthis.hideNextButton();
 </code></pre>
 
-<h3 id="change-3-define-and-load-required-resources">Change 3: Define and load required resources</h3>
+<h3 id="change-2-define-and-load-required-resources">Change 2: Define and load required resources</h3>
 <p>The below javascript defines where the necessary files are so that Qualtrics can load these. If you enabled GitHub Pages of your repository, Qualtrics can load the necessary JS, CSS, and image files right away.</p>
 <p>One way to check whether these files are accessilbe is to view the source of <code>demo-simple-rt-task-transformed.html</code> and click the imported scripts. For example of <code>jspsych.js</code>, <a href='https://kywch.github.io/Simple-RT-Task/jspsych-6.1.0/jspsych.js'>https://your-github-username.github.io/your-experiment-name/jspsych-6.1.0/jspsych.js</a>.</p>
 <pre><code class="js">var task_github = &quot;https://kywch.github.io/Simple-RT-Task/&quot;; // https://&lt;your-github-username&gt;.github.io/&lt;your-experiment-name&gt;
@@ -519,16 +516,16 @@ if (window.Qualtrics &amp;&amp; (!window.frameElement || window.frameElement.id 
 }
 </code></pre>
 
-<h3 id="change-4-append-the-display_stage-div-using-jquery">Change 4: Append the display_stage Div using jQuery</h3>
+<h3 id="change-3-append-the-display_stage-div-using-jquery">Change 3: Append the display_stage Div using jQuery</h3>
 <p>In Qualtrics, jQuery (loaded by default) is used to append the <code>display_stage_background</code> and <code>display_stage</code> Divs. The CSS for these elements will be added directly to Question HTML later in this tutorial.</p>
 <pre><code class="js">// jQuery is loaded in Qualtrics by default
 jQuery(&quot;&lt;div id = 'display_stage_background'&gt;&lt;/div&gt;&quot;).appendTo('body');
 jQuery(&quot;&lt;div id = 'display_stage'&gt;&lt;/div&gt;&quot;).appendTo('body');
 </code></pre>
 
-<h3 id="change-5-wrap-jspsychinit-in-a-function">Change 5: Wrap jsPsych.init() in a function</h3>
+<h3 id="change-4-wrap-jspsychinit-in-a-function">Change 4: Wrap jsPsych.init() in a function</h3>
 <p>The main experiment codes are wrapped in the <code>initExp</code> function to make sure it runs after all the necessary library and plugin files are loaded (as defined in the <code>loadScript</code> function above).</p>
-<h3 id="change-6-summarize-and-save-the-results-to-qualtrics">Change 6: Summarize and save the results to Qualtrics</h3>
+<h3 id="change-5-summarize-and-save-the-results-to-qualtrics">Change 5: Summarize and save the results to Qualtrics</h3>
 <p><a href="https://www.jspsych.org/tutorials/rt-task/#part-11-data-aggregation">The original jsPsych tutorial</a> shows you how you can process and summarize the experiment results online. <strong>Wouldn't it be great if your experiment results are directly included in your Qualtrics data?</strong> </p>
 <p>Well, you can actually do this by summarizing the results online and save those results in <a href="https://www.qualtrics.com/support/survey-platform/survey-module/survey-flow/standard-elements/embedded-data/">Qualtrics' Embedded Data</a> using the <a href="https://s.qualtrics.com/WRAPI/QuestionAPI/classes/Qualtrics%20JavaScript%20Question%20API.html#method_setEmbeddedData">setEmbeddedData</a> function.</p>
 <p><code>demo-simple-rt-task-qualtrics.js</code> does so when the jsPsych experiment finishes by running the below code (from <a href="https://www.jspsych.org/tutorials/rt-task/#part-11-data-aggregation"><code>debrief_block</code></a>).</p>
@@ -562,7 +559,7 @@ jQuery(&quot;&lt;div id = 'display_stage'&gt;&lt;/div&gt;&quot;).appendTo('body'
 });
 </code></pre>
 
-<h3 id="change-7-add-the-clean-up-and-continue-functions">Change 7: Add the clean up and continue functions</h3>
+<h3 id="change-6-add-the-clean-up-and-continue-functions">Change 6: Add the clean up and continue functions</h3>
 <p>When the jsPsych ends, <code>display_stage</code> and <code>display_stage_background</code> should be removed. Then, execulte the <code>clickNextButton</code> to simulate clicking the Next button and proceed to the next question.</p>
 <hr />
 <h2 id="finally-embedding-jspsych-in-qualtrics">Finally, embedding jsPsych in Qualtrics</h2>

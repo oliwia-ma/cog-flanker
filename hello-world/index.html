@@ -84,17 +84,15 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#second-transformation-qualtricsjs">Second transformation: qualtrics.js</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#change-1-the-question-javascript-skeleton">Change 1: The Question JavaScript skeleton</a>
+    <li class="toctree-l3"><a class="reference internal" href="#change-1-hide-the-next-button">Change 1: Hide the Next button</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#change-2-hide-the-next-button">Change 2: Hide the Next button</a>
+    <li class="toctree-l3"><a class="reference internal" href="#change-2-define-and-load-required-resources">Change 2: Define and load required resources</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#change-3-define-and-load-required-resources">Change 3: Define and load required resources</a>
+    <li class="toctree-l3"><a class="reference internal" href="#change-3-append-the-display_stage-div-using-jquery">Change 3: Append the display_stage Div using jQuery</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#change-4-append-the-display_stage-div-using-jquery">Change 4: Append the display_stage Div using jQuery</a>
+    <li class="toctree-l3"><a class="reference internal" href="#change-4-wrap-jspsychinit-in-a-function">Change 4: Wrap jsPsych.init() in a function</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#change-5-wrap-jspsychinit-in-a-function">Change 5: Wrap jsPsych.init() in a function</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#change-6-add-the-clean-up-and-continue-functions">Change 6: Add the clean up and continue functions</a>
+    <li class="toctree-l3"><a class="reference internal" href="#change-5-add-the-clean-up-and-continue-functions">Change 5: Add the clean up and continue functions</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#putting-it-all-together_1">Putting it all together</a>
     </li>
@@ -185,10 +183,10 @@
 <p>When you open <code>experiment.html</code> in a browser, you should see "Hello world!" printed on the screen, and if you press a key on the keyboard, the text should disappear (ending the trial).</p>
 <hr />
 <h2 id="first-transformation-experiment-with-display-elementhtml">First transformation: <code>experiment-with-display-element.html</code></h2>
-<p>The <code>experiment-with-display-element.html</code> file in this repository contains three changes from the <code>experiment.html</code>. When you open <code>experiment-with-display-element.html</code> in a browser, you should see the same "Hello world!". </p>
+<p>Adding the <code>display_element</code> parameter in the <code>jsPsych.init()</code> and having additional control over the display element is important for embedding jsPsych into Qualtrics. The <code>experiment-with-display-element.html</code> file in <a href="https://github.com/kywch/jsPsych-in-Qualtrics/blob/master/hello-world/experiment-with-display-element.html">this GitHub repository</a> contains three changes from the <code>experiment.html</code>. When you open <code>experiment-with-display-element.html</code> in a browser, you should see the same "Hello world!". </p>
 <p>Let's look at each change.</p>
 <h3 id="change-1-using-display_element">Change 1: Using <code>display_element</code></h3>
-<p>By adding the <code>display_element</code> parameter in the <code>jsPsych.init()</code> like below, you can have additional control over the display element, which is important in embedding jsPsych into Qualtrics. In the below example, jsPsych will render the experiment in the '<div>' called <code>display_stage</code>, which the current script does not have yet. So, let's add the <code>display_stage</code>.</p>
+<p>By adding the <code>display_element</code> parameter in the <code>jsPsych.init()</code> like below, jsPsych will render the experiment in the '<div>' called <code>display_stage</code>, which the current script does not have yet. So, let's add the <code>display_stage</code>.</p>
 <pre><code class="html">jsPsych.init({
     timeline: [hello_trial],
     display_element: 'display_stage'
@@ -314,10 +312,7 @@
 
 <hr />
 <h2 id="second-transformation-qualtricsjs">Second transformation: <code>qualtrics.js</code></h2>
-<p>The <code>qualtrics.js</code> file in this repository contains several changes from <code>experiment-with-display-element.html</code> and can be put into Qualtrics.</p>
-<p>Let's look at each change.</p>
-<h3 id="change-1-the-question-javascript-skeleton">Change 1: The Question JavaScript skeleton</h3>
-<p>You need to add your experiment codes to the skeleton provided by Qualtrics Question JavaScript Editor. For details, see the <a href="https://www.qualtrics.com/support/survey-platform/survey-module/question-options/add-javascript/">Add JavaScript help page</a>.</p>
+<p>To make your jsPsych experiment work in Qualtrics, you need to add your code to the below skeleton provided by Qualtrics Question JavaScript Editor. For details, see the <a href="https://www.qualtrics.com/support/survey-platform/survey-module/question-options/add-javascript/">Add JavaScript help page</a>.</p>
 <pre><code class="js">Qualtrics.SurveyEngine.addOnload(function()
 {
     /*Place your JavaScript here to run when the page loads*/
@@ -337,7 +332,9 @@ Qualtrics.SurveyEngine.addOnUnload(function()
 });
 </code></pre>
 
-<h3 id="change-2-hide-the-next-button">Change 2: Hide the Next button</h3>
+<p>The <code>qualtrics.js</code> file in <a href="https://github.com/kywch/jsPsych-in-Qualtrics/blob/master/hello-world/qualtrics.js">this GitHub repository</a> contains several changes from <code>experiment-with-display-element.html</code> and can be put into Qualtrics.</p>
+<p>Let's look at each change.</p>
+<h3 id="change-1-hide-the-next-button">Change 1: Hide the Next button</h3>
 <p>The below javascript code hides the Next button and puts the javascript code in the driving seat.</p>
 <pre><code class="js">// Retrieve Qualtrics object and save in qthis
 var qthis = this;
@@ -346,7 +343,7 @@ var qthis = this;
 qthis.hideNextButton();
 </code></pre>
 
-<h3 id="change-3-define-and-load-required-resources">Change 3: Define and load required resources</h3>
+<h3 id="change-2-define-and-load-required-resources">Change 2: Define and load required resources</h3>
 <p>The below javascript defines where the necessary files are so that Qualtrics can load these.</p>
 <p>After <a href="../github-pages/">Making jsPsych files loadable in Qualtrics</a>, you should be able to put your github page url at <code>jslib_url</code>.</p>
 <pre><code class="js">var jslib_url = &quot;https://kywch.github.io/jsPsych/&quot;; // &quot;https://&lt;your-github-username&gt;.github.io/jsPsych/&quot;
@@ -374,14 +371,14 @@ if (window.Qualtrics &amp;&amp; (!window.frameElement || window.frameElement.id 
 }
 </code></pre>
 
-<h3 id="change-4-append-the-display_stage-div-using-jquery">Change 4: Append the display_stage Div using jQuery</h3>
+<h3 id="change-3-append-the-display_stage-div-using-jquery">Change 3: Append the display_stage Div using jQuery</h3>
 <p>In Qualtrics, jQuery (loaded by default) is used to append the <code>display_stage_background</code> and <code>display_stage</code> Divs. The CSS for these elements will be added directly to Question HTML later in this tutorial.</p>
 <pre><code class="js">// jQuery is loaded in Qualtrics by default
 jQuery(&quot;&lt;div id = 'display_stage_background'&gt;&lt;/div&gt;&quot;).appendTo('body');
 jQuery(&quot;&lt;div id = 'display_stage'&gt;&lt;/div&gt;&quot;).appendTo('body');
 </code></pre>
 
-<h3 id="change-5-wrap-jspsychinit-in-a-function">Change 5: Wrap jsPsych.init() in a function</h3>
+<h3 id="change-4-wrap-jspsychinit-in-a-function">Change 4: Wrap jsPsych.init() in a function</h3>
 <p>The main experiment codes are wrapped in the <code>initExp</code> function to make sure it runs after all the necessary library and plugin files are loaded (as defined in the <code>loadScript</code> function above).</p>
 <pre><code class="js">function initExp() {
 
@@ -397,7 +394,7 @@ jQuery(&quot;&lt;div id = 'display_stage'&gt;&lt;/div&gt;&quot;).appendTo('body'
 }
 </code></pre>
 
-<h3 id="change-6-add-the-clean-up-and-continue-functions">Change 6: Add the clean up and continue functions</h3>
+<h3 id="change-5-add-the-clean-up-and-continue-functions">Change 5: Add the clean up and continue functions</h3>
 <p>When the jsPsych ends, <code>display_stage</code> and <code>display_stage_background</code> should be removed. Then, execulte the <code>clickNextButton</code> to simulate clicking the Next button and proceed to the next question.</p>
 <pre><code class="js">on_finish: function (data) {
     // clear the stage
