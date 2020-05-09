@@ -163,6 +163,10 @@
     </ul>
                     </li>
                 </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../flanker/">Embedding Flanker Task</a>
+                    </li>
+                </ul>
       </div>
     </div>
     </nav>
@@ -476,7 +480,7 @@ Qualtrics.SurveyEngine.addOnUnload(function()
 });
 </code></pre>
 
-<p>The <code>demo-simple-rt-task-qualtrics.js</code> file in <a href="https://github.com/kywch/jsPsych-in-Qualtrics/blob/master/rt-task/demo-simple-rt-task-qualtrics.js">this GitHub repository</a> contains several changes from <code>demo-simple-rt-task-qualtrics.html</code> and can be direclty copy-pasted into the Qualtrics Question JavaScript Editor.</p>
+<p>The <code>demo-simple-rt-task-qualtrics.js</code> file in <a href="https://github.com/kywch/jsPsych-in-Qualtrics/blob/master/rt-task/demo-simple-rt-task-qualtrics.js">this GitHub repository</a> contains several changes from <code>demo-simple-rt-task-transformed-with-display-element.html</code> and can be direclty copy-pasted into the Qualtrics Question JavaScript Editor.</p>
 <p>By separating the experiment-related code from the operation-related code, converting the html file to Qualtrics JavaScript function is pretty much similar to <a href="../hello-world/#second-transformation-qualtricsjs">the Hello-World example</a>.</p>
 <p>Let's look at each change.</p>
 <h3 id="change-1-hide-the-next-button">Change 1: Hide the Next button</h3>
@@ -528,13 +532,13 @@ jQuery(&quot;&lt;div id = 'display_stage'&gt;&lt;/div&gt;&quot;).appendTo('body'
 <p>The main experiment codes are wrapped in the <code>initExp</code> function to make sure it runs after all the necessary library and plugin files are loaded (as defined in the <code>loadScript</code> function above).</p>
 <h3 id="change-5-summarize-and-save-the-results-to-qualtrics">Change 5: Summarize and save the results to Qualtrics</h3>
 <p><a href="https://www.jspsych.org/tutorials/rt-task/#part-11-data-aggregation">The original jsPsych tutorial</a> shows you how you can process and summarize the experiment results online. <strong>Wouldn't it be great if your experiment results are directly included in your Qualtrics data?</strong> </p>
-<p>Well, you can actually do this by summarizing the results online and save those results in <a href="https://www.qualtrics.com/support/survey-platform/survey-module/survey-flow/standard-elements/embedded-data/">Qualtrics' Embedded Data</a> using the <a href="https://s.qualtrics.com/WRAPI/QuestionAPI/classes/Qualtrics%20JavaScript%20Question%20API.html#method_setEmbeddedData">setEmbeddedData</a> function.</p>
+<p>Well, you can actually summarize the results online and save those results in <a href="https://www.qualtrics.com/support/survey-platform/survey-module/survey-flow/standard-elements/embedded-data/">Qualtrics' Embedded Data</a> using the <a href="https://s.qualtrics.com/WRAPI/QuestionAPI/classes/Qualtrics%20JavaScript%20Question%20API.html#method_setEmbeddedData">setEmbeddedData</a> function.</p>
 <p><code>demo-simple-rt-task-qualtrics.js</code> does so when the jsPsych experiment finishes by running the below code (from <a href="https://www.jspsych.org/tutorials/rt-task/#part-11-data-aggregation"><code>debrief_block</code></a>).</p>
 <pre><code class="js">jsPsych.init({
     timeline: timeline,
     display_element: 'display_stage',
     on_finish: function (data) {
-        /* Change 6: Summarize and save the results to Qualtrics */
+        /* Change 5: Summarize and save the results to Qualtrics */
         // summarize the results
         var trials = jsPsych.data.get().filter({
             test_part: 'test'
@@ -549,7 +553,7 @@ jQuery(&quot;&lt;div id = 'display_stage'&gt;&lt;/div&gt;&quot;).appendTo('body'
         Qualtrics.SurveyEngine.setEmbeddedData(&quot;accuracy&quot;, accuracy);
         Qualtrics.SurveyEngine.setEmbeddedData(&quot;rt&quot;, rt);
 
-        /* Change 7: Add the clean up and continue functions.*/
+        /* Change 6: Add the clean up and continue functions.*/
         // clear the stage
         jQuery('display_stage').remove();
         jQuery('display_stage_background').remove();
@@ -611,6 +615,8 @@ jQuery(&quot;&lt;div id = 'display_stage'&gt;&lt;/div&gt;&quot;).appendTo('body'
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
+        <a href="../flanker/" class="btn btn-neutral float-right" title="Embedding Flanker Task">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
       
         <a href="../hello-world/" class="btn btn-neutral" title="Embedding Hello World!"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
@@ -622,7 +628,7 @@ jQuery(&quot;&lt;div id = 'display_stage'&gt;&lt;/div&gt;&quot;).appendTo('body'
   <div role="contentinfo">
     <!-- Copyright etc -->
     
-      <p>Copyright &copy; 2020 <a href="https://kywch.github.io/" target="_blank">Kyoung Whan Choe</a>.</p>
+      <p>Copyright &copy; 2020 <a href="https://kywch.github.io/" target="_blank">Kyoung Whan Choe</a>. </p>
     
   </div>
 
@@ -642,6 +648,8 @@ jQuery(&quot;&lt;div id = 'display_stage'&gt;&lt;/div&gt;&quot;).appendTo('body'
       
         <span><a href="../hello-world/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
+      
+        <span style="margin-left: 15px"><a href="../flanker/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
