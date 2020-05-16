@@ -104,6 +104,8 @@
     </li>
         </ul>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#step-7-downloading-the-data">Step 7. Downloading the data</a>
+    </li>
     </ul>
                     </li>
                 </ul>
@@ -658,6 +660,23 @@ Qualtrics.SurveyEngine.addOnUnload(function () {
 
 });
 
+</code></pre>
+
+<hr />
+<h2 id="step-7-downloading-the-data">Step 7. Downloading the data</h2>
+<p>When your experiment is done, you can easily download the result files with the following steps.</p>
+<p>First, log in to your account. Then, this command takes you to the <code>exp_data</code> that you made.</p>
+<pre><code class="sh">$ cd ~/public_html/exp_data
+</code></pre>
+
+<p>This command compresses the directory with the result files (in this case <code>hello-world</code>).
+You need to replace <code>hello-world</code> with your own experiment/directory.</p>
+<pre><code class="sh">$ zip -r hello-world.zip hello-world
+</code></pre>
+
+<p>You can access the zipped file through your web-browser by going to <code>https://&lt;server-url&gt;/~&lt;your-account&gt;/exp_data/hello-world.zip</code>, like my url -- <a href="https://users.rcc.uchicago.edu/~kywch/exp_data/hello-world.zip">https://users.rcc.uchicago.edu/~kywch/exp_data/hello-world.zip</a>.</p>
+<p>After downloading the zipped file, you may want to delete it.</p>
+<pre><code class="sh">$ rm hello-world.zip
 </code></pre>
               
             </div>
