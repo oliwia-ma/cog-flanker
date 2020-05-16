@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Kyoung Whan Choe">
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Saving Data with PHP - jsPsych in Qualtrics</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Saving Data with PHP";
+    var mkdocs_page_input_path = "save-php.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-102316-3', 'auto');
+      ga('send', 'pageview');
+  </script>
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> jsPsych in Qualtrics</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Introduction</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../github-pages/">Hosting jsPsych</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../hello-world/">Embedding Hello World!</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Saving Data with PHP</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#step-0-getting-access-to-a-web-server">Step 0. Getting access to a web server</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#step-1-going-into-the-public_html-directory">Step 1. Going into the public_html directory</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#step-2-setting-up-the-directories-for-saving-experiment-files">Step 2. Setting up the directories for saving experiment files</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#step-3-creating-the-save_dataphp">Step 3. Creating the save_data.php</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#step-4-making-an-experiment-directory">Step 4. Making an experiment directory</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#step-5-adding-the-save-function-to-the-experiment-html-script">Step 5. Adding the save function to the experiment HTML script</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#change-4-defining-necessary-variables-for-saving-the-results">Change 4: Defining necessary variables for saving the results</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#change-5-defining-save-functions-using-jquery">Change 5. Defining save functions using jQuery</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#change-6-sending-the-results-file-upon-completion">Change 6: Sending the results file upon completion</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#putting-it-all-together">Putting it all together</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#step-6-using-the-save-function-from-qualtrics">Step 6. Using the save function from Qualtrics</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#change-6-define-necessary-variables-and-functions-for-saving-the-results">Change 6: Define necessary variables and functions for saving the results</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#change-7-call-the-save-function-choose-one">Change 7: Call the save function -- CHOOSE ONE!</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#putting-it-all-together_1">Putting it all together</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../rt-task/">Embedding Reaction-Time Task</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../flanker/">Embedding Flanker Task</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">jsPsych in Qualtrics</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Saving Data with PHP</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="saving-jspsych-data-to-a-web-server-using-php">Saving jsPsych data to a web server using PHP</h1>
+<p>You can save the aggregated data to Qualtrics, but you may also want to look at the trial-level data for further analysis. 
+<strong>If you have access to a web server that can run PHP</strong>, then you can save each participant's data as a CSV or JSON file on the server.</p>
+<hr />
+<h2 id="step-0-getting-access-to-a-web-server">Step 0. Getting access to a web server</h2>
+<p>Your institution usually provides you a free access to a web server, so that you can run your personal web site.
+If you are not familiar with web servers and PHP, please please ask your IT professional for help. 
+<strong>They almost always can HELP you!</strong> Also look for resources like below. </p>
+<ul>
+<li><a href="https://cse.unl.edu/faq-section/web-related">UNL.edu: Prerequisites for hosting web content on your account/setting up your first PHP page</a></li>
+<li><a href="https://ist.njit.edu/sites/ist.njit.edu/files/createwebpage_0.pdf">NJIT.edu: Step by step instructions for beginners for creating a basic Web Page</a></li>
+</ul>
+<hr />
+<h2 id="step-1-going-into-the-public_html-directory">Step 1. Going into the <code>public_html</code> directory</h2>
+<p>If you have gained the access to a web server, login to the server and go to the <code>public_html</code> directory. If you are not sure, please read this page first: <a href="https://cse.unl.edu/faq-section/web-related">Prerequisites for hosting web content on your account/how to setup your first PHP page</a>.</p>
+<p>Reading <a href="https://files.fosswire.com/2007/08/fwunixref.pdf">this linux command cheatsheet</a> can also help.</p>
+<pre><code class="sh">$ cd ~/public_html
+</code></pre>
+
+<hr />
+<h2 id="step-2-setting-up-the-directories-for-saving-experiment-files">Step 2. Setting up the directories for saving experiment files</h2>
+<p>Let's create a directory called <code>exp_data</code>, which will host necessary files and serve as a parent directory for your experiments by running three separate commands one-by-one.</p>
+<p>This command makes a directory called <code>exp_data</code>:</p>
+<pre><code class="sh">$ mkdir exp_data
+</code></pre>
+
+<p>This command moves you into the <code>exp_data</code> directory:</p>
+<pre><code class="sh">$ cd exp_data
+</code></pre>
+
+<p>This command shows you where you are. So you should see something like <code>/home/&lt;your-account&gt;/public_html/exp_data</code>:</p>
+<pre><code class="sh">$ pwd
+</code></pre>
+
+<p>This command prevents others from seeing inside <code>exp_data</code> by creating an empty index html file:</p>
+<pre><code class="sh">$ touch index.html
+</code></pre>
+
+<p>This command makes sure that <code>index.html</code> hides the directory structure 
+(for details of <code>.htaccess</code>, see <a href="http://www.htaccess-guide.com/directoryindex-uses/">http://www.htaccess-guide.com/directoryindex-uses/</a>)</p>
+<pre><code class="sh">$ echo &quot;DirectoryIndex index.html&quot; &gt;&gt; .htaccess
+</code></pre>
+
+<hr />
+<h2 id="step-3-creating-the-save_dataphp">Step 3. Creating the <code>save_data.php</code></h2>
+<p>Let's create the PHP file that will receive and save your data by using <code>vi</code>. If you are not familiar with <code>vi</code>, 
+please read <a href="https://www.cyberciti.biz/faq/linux-unix-vim-save-and-quit-command/">this guide for using the vi editor</a>.</p>
+<p>This command will open an vi editor and let you edit it:</p>
+<pre><code class="sh">$ vi save_data.php
+</code></pre>
+
+<p>Copy-paste the below PHP code and save, then you are done with this step:</p>
+<pre><code class="php">&lt;?php
+// WARNING: the below config can cause a serious security issue.
+// Please read https://portswigger.net/web-security/cors/access-control-allow-origin
+// Once you are done testing, you should limit the access
+//header('Access-Control-Allow-Origin: https://ssd.az1.qualtrics.com');
+header('Access-Control-Allow-Origin: *');
+
+// NOTE: the below code expects three fields and will NOT work if any of these is missing.
+// - data_dir: specify the server directory to store data
+// - file_name: specify the filename of the data being saved, which can include subject id
+// - exp_data: contain the full json/csv data to be saved
+
+if (isset($_POST['exp_data']) == false) { 
+    echo('Hello'); 
+    exit; 
+}
+$exp_data = $_POST['exp_data'];
+
+/* prevent XSS:  */
+$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+if (isset($_POST['data_dir']) == true)
+{
+    $data_dir = $_POST['data_dir']; // data directory
+} else { exit; }
+
+if (isset($_POST['file_name']) == true)
+{
+    $file_name = $_POST['file_name']; // mturk_id
+} else { exit; }
+
+// write the file to disk
+// NOTE: you must make the data directory by all users
+// For example, by running `chmod 772` to give a write access to EVERYONE
+file_put_contents($data_dir.'/'.$file_name, $exp_data);
+
+exit;
+?&gt;
+</code></pre>
+
+<p>Your <code>save_data.php</code> url will look like <code>https://&lt;server-url&gt;/~&lt;your-account&gt;/exp_data/save_data.php</code>, like my url -- <a href="https://users.rcc.uchicago.edu/~kywch/exp_data/save_data.php">https://users.rcc.uchicago.edu/~kywch/exp_data/save_data.php</a>. Note that the <code>exp_data/save_data.php</code> part should be the same if you followed the above steps.</p>
+<p>If your script is running, you will see <strong>Hello</strong> in your browser.</p>
+<hr />
+<h2 id="step-4-making-an-experiment-directory">Step 4. Making an experiment directory</h2>
+<p>The above PHP script requires the experimenter to specify <code>data_dir</code>, in which experiment files are saved.
+Here, let's create a folder called <code>hello-world</code> under <code>exp_data</code> and save files there.
+Make sure that you are in the <code>exp_data</code> folder with <code>pwd</code>. </p>
+<p>This command makes a directory called <code>hello-world</code>:</p>
+<pre><code class="sh">$ mkdir hello-world
+</code></pre>
+
+<p>You also need to adjust this directory's permission so that the PHP script can save files. 
+To learn more about permissions, see this page: <a href="http://linuxcommand.org/lc3_lts0090.php">http://linuxcommand.org/lc3_lts0090.php</a>.</p>
+<p>This command allows the PHP script to write files in the <code>hello-world</code> directory, while preventing other people from seeing inside:</p>
+<pre><code class="sh">$ chmod 772 hello-world
+</code></pre>
+
+<hr />
+<h2 id="step-5-adding-the-save-function-to-the-experiment-html-script">Step 5. Adding the save function to the experiment HTML script</h2>
+<p>The server side work is done. Now, you need to add scripts to send the result file when an experiment session is done.</p>
+<p>The <code>experiment-with-display-element-save-php.html</code> file in <a href="https://github.com/kywch/jsPsych-in-Qualtrics/blob/master/hello-world/experiment-with-display-element-save-php.html">this GitHub repository</a> contains three additional changes from <code>experiment-with-display-element.html</code>. When you open <code>experiment-with-display-element-save-php.html</code> in a browser, you should see the same "Hello world!". </p>
+<p><strong><font color=red>In addtion, you will find new json and csv files under <code>hello-world</code> when you put correct url of <code>save_data.php</code> below.</font></strong></p>
+<p>We start from <code>experiment-with-display-element.html</code>, which you can see from <a href="../hello-world/#first-transformation-experiment-with-display-elementhtml">the Hello World! tutorial</a>. Let's look at these additional change.</p>
+<h3 id="change-4-defining-necessary-variables-for-saving-the-results">Change 4: Defining necessary variables for saving the results</h3>
+<p>The above <code>save_data.php</code> expects three fields -- <code>data_dir</code>, <code>file_name</code>, and <code>exp_data</code> -- and will NOT work if any of these is missing.</p>
+<ul>
+<li><code>data_dir</code> specifies the server directory to store data. You may want to include <code>task_name</code> in the directory name.</li>
+<li><code>file_name</code> specifies the filename of the result file. You may want to include the subject id. </li>
+<li><code>exp_data</code> contains the full json/csv data to be saved.</li>
+</ul>
+<p><strong><font color=red>You need to replace <code>save_url</code> with your save_data.php url.</font></strong></p>
+<pre><code class="js">// experimental session-defining variables
+var task_name = &quot;hello-world&quot;;
+var sbj_id = &quot;test01&quot;;
+
+// you must put your save_data php url here.
+var save_url = &quot;https://users.rcc.uchicago.edu/~kywch/exp_data/save_data.php&quot;;
+var data_dir = task_name;
+
+// my preference is to include the task and sbj_id in the file name
+var file_name = task_name + '_' + sbj_id; 
+</code></pre>
+
+<h3 id="change-5-defining-save-functions-using-jquery">Change 5. Defining save functions using jQuery</h3>
+<p>Qualtrics loads <code>jQuery</code> by default, so you can use <code>jQuery</code> for saving files. 
+However, this html script must load <code>jQuery</code> library to use the save function.</p>
+<pre><code class="html">&lt;script src='https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js'&gt;&lt;/script&gt;
+</code></pre>
+
+<p>You can use either the JSON or CSV format, whichever convenient for you. The save functions look like this.</p>
+<pre><code class="js">function save_data_json() {
+    jQuery.ajax({
+        type: 'post',
+        cache: false,
+        url: save_url,
+        data: {
+            data_dir: data_dir,
+            file_name: file_name + '.json', // the file type should be added
+            exp_data: jsPsych.data.get().json()
+        }
+    });
+}
+
+function save_data_csv() {
+    jQuery.ajax({
+        type: 'post',
+        cache: false,
+        url: save_url,
+        data: {
+            data_dir: data_dir,
+            file_name: file_name + '.csv', // the file type should be added
+            exp_data: jsPsych.data.get().csv()
+        }
+    });
+}
+</code></pre>
+
+<h3 id="change-6-sending-the-results-file-upon-completion">Change 6: Sending the results file upon completion</h3>
+<p>The <code>on_finish</code> callback can be declared in the <code>jsPsych.init</code> method. 
+For details, see <a href="https://www.jspsych.org/overview/callbacks/#on_finish-experiment">the original jsPsych tutorial</a>.
+The callback will trigger once all trials in the experiment have been run, so it is a great place to call save functions.</p>
+<p><strong>NOTE: Here, both <code>save_data_json()</code> and <code>save_data_csv()</code> were called to show how these can be used. Choose one.</strong></p>
+<pre><code class="js">    jsPsych.init({
+        timeline: [hello_trial],
+        display_element: 'display_stage',
+
+        /* Change 6: Sending the results file upon completion */
+        on_finish: function() {
+            save_data_json();
+            save_data_csv();
+        }
+    })
+</code></pre>
+
+<h3 id="putting-it-all-together">Putting it all together</h3>
+<p>So the <code>experiment-with-display-element-save-php.html</code> code looks like this. This html file should save the result files to your server.</p>
+<pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+    &lt;title&gt;My experiment&lt;/title&gt;
+    &lt;!-- Change 5: Defining save functions using jQuery --&gt;
+    &lt;script src='https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js'&gt;&lt;/script&gt;
+    &lt;script src=&quot;jspsych-6.1.0/jspsych.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;jspsych-6.1.0/plugins/jspsych-html-keyboard-response.js&quot;&gt;&lt;/script&gt;
+    &lt;link href=&quot;jspsych-6.1.0/css/jspsych.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;&gt;
+    &lt;/link&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+    &lt;!-- Change 3: Adding extra scripts for Qualtrics --&gt;
+    &lt;!-- COPY PASTE TO QUALTRICS FROM HERE --&gt;
+    &lt;link href=&quot;https://kywch.github.io/jsPsych/css/jspsych.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;&gt;
+    &lt;/link&gt;
+    &lt;div&gt;
+        &lt;span style=&quot;font-size: 24px;&quot;&gt;
+            &lt;br&gt;&lt;br&gt;
+            If you are seeing this message for &lt;span style=&quot;color: rgb(255, 0, 0);&quot;&gt;&lt;b&gt;more than 5
+                    minutes&lt;/b&gt;&lt;/span&gt;,&lt;br&gt;
+            please screen-capture this screen and send the image to us.
+            &lt;br&gt;&lt;br&gt;
+            &lt;span style=&quot;font-size: 28px;&quot;&gt;We are very sorry for the inconvenience.&lt;/span&gt;
+        &lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Change 2: Adding `display_stage` CSS and Div --&gt;
+    &lt;style&gt;
+        #display_stage_background {
+            width: 100vw;
+            background-color: white;
+            z-index: -1;
+        }
+
+        #display_stage {
+            position: fixed;
+            left: 1vw;
+            top: 1vh;
+            height: 98vh;
+            width: 98vw;
+            background-color: white;
+            box-shadow: 1px 1px 1px #999;
+            border-radius: 15px;
+            z-index: 0;
+            overflow-y: hidden;
+            overflow-x: hidden;
+        }
+    &lt;/style&gt;
+    &lt;!-- COPY PASTE TO QUALTRICS UP TO HERE --&gt;
+
+    &lt;div id='display_stage_background'&gt;&lt;/div&gt;
+    &lt;div id='display_stage'&gt;&lt;/div&gt;
+
+&lt;/body&gt;
+
+&lt;script&gt;
+
+    /* Change 4: Defining necessary variables for saving the results */
+    // experimental session-defining variables
+    var task_name = &quot;hello-world&quot;;
+    var sbj_id = &quot;test01&quot;;
+
+    // you must put your save_data php url here.
+    var save_url = &quot;https://users.rcc.uchicago.edu/~kywch/exp_data/save_data.php&quot;;
+    var data_dir = task_name;
+
+    // my preference is to include the task and sbj_id in the file name
+    var file_name = task_name + '_' + sbj_id; 
+
+    /* Change 5: Defining save functions using jQuery */
+    function save_data_json() {
+        jQuery.ajax({
+            type: 'post',
+            cache: false,
+            url: save_url,
+            data: {
+                data_dir: data_dir,
+                file_name: file_name + '.json', // the file type should be added
+                exp_data: jsPsych.data.get().json()
+            }
+        });
+    }
+
+    function save_data_csv() {
+        jQuery.ajax({
+            type: 'post',
+            cache: false,
+            url: save_url,
+            data: {
+                data_dir: data_dir,
+                file_name: file_name + '.csv', // the file type should be added
+                exp_data: jsPsych.data.get().csv()
+            }
+        });
+    }
+
+    var hello_trial = {
+        type: 'html-keyboard-response',
+        stimulus: 'Hello world!'
+    }
+
+    /* Change 1: Using `display_element` */
+    jsPsych.init({
+        timeline: [hello_trial],
+        display_element: 'display_stage',
+
+        /* Change 6: Sending the results file upon completion */
+        on_finish: function() {
+            save_data_json();
+            save_data_csv();
+        }
+    })
+&lt;/script&gt;
+
+&lt;/html&gt;
+</code></pre>
+
+<hr />
+<h2 id="step-6-using-the-save-function-from-qualtrics">Step 6. Using the save function from Qualtrics</h2>
+<p>The <code>qualtrics-save-php.js</code> file in <a href="https://github.com/kywch/jsPsych-in-Qualtrics/blob/master/hello-world/qualtrics-save-php.js">this GitHub repository</a> contains additional changes from <code>qualtrics.js</code> and <code>experiment-with-display-element-save-php.html</code> and can be direclty copy-pasted into the Qualtrics Question JavaScript Editor.</p>
+<p>We start from <code>qualtrics.js</code>, which you can see from <a href="../hello-world/#second-transformation-qualtricsjs">the Hello World! tutorial</a>. 
+Let's look at these additional change.</p>
+<h3 id="change-6-define-necessary-variables-and-functions-for-saving-the-results">Change 6: Define necessary variables and functions for saving the results</h3>
+<p>The below javascript defines necessary variables and functions for saving the results.</p>
+<p>The above <code>save_data.php</code> expects three fields -- <code>data_dir</code>, <code>file_name</code>, and <code>exp_data</code> -- and will NOT work if any of these is missing.</p>
+<ul>
+<li><code>data_dir</code> specifies the server directory to store data. You may want to include <code>task_name</code> in the directory name.</li>
+<li><code>file_name</code> specifies the filename of the data being saved. You may want to include the subject id. For how to do so in Qualtrics, please see the below resources.<ul>
+<li><a href="https://www.qualtrics.com/support/survey-platform/common-use-cases-rc/assigning-randomized-ids-to-respondents/">Qualtrics.com: Assigning Randomized IDs to Respondents</a></li>
+<li><a href="https://ithelp.brown.edu/kb/articles/use-qualtrics-for-human-subject-research-using-pre-generated-participant-ids">Brown.edu: Use Qualtrics for Human Subject Research: Using Pre-Generated Participant IDs</a></li>
+<li><a href="https://www.cloudresearch.com/resources/blog/workerid-and-all-mturk-fields-sent-to-qualtrics/">Cloudresearch.com: WorkerID (And All MTurk Fields) Sent to Qualtrics</a></li>
+</ul>
+</li>
+<li><code>exp_data</code> contains the full json/csv data to be saved.</li>
+</ul>
+<p><strong><font color=red>You need to replace <code>save_url</code> with your save_data.php url.</font></strong></p>
+<pre><code class="js">// experimental session-defining variables
+var task_name = &quot;hello-world&quot;;
+var sbj_id = &quot;test01&quot;;
+
+// you must put your save_data php url here.
+var save_url = &quot;https://users.rcc.uchicago.edu/~kywch/exp_data/save_data.php&quot;;
+var data_dir = task_name;
+
+// my preference is to include the task and sbj_id in the file name
+var file_name = task_name + '_' + sbj_id; 
+
+function save_data_json() {
+    jQuery.ajax({
+        type: 'post',
+        cache: false,
+        url: save_url,
+        data: {
+            data_dir: data_dir,
+            file_name: file_name + '.json', // the file type should be added
+            exp_data: jsPsych.data.get().json()
+        }
+    });
+}
+
+function save_data_csv() {
+    jQuery.ajax({
+        type: 'post',
+        cache: false,
+        url: save_url,
+        data: {
+            data_dir: data_dir,
+            file_name: file_name + '.csv', // the file type should be added
+            exp_data: jsPsych.data.get().csv()
+        }
+    });
+}
+</code></pre>
+
+<h3 id="change-7-call-the-save-function-choose-one">Change 7: Call the save function -- CHOOSE ONE!</h3>
+<p>The save function was added inside <code>on_finish</code>, which is called once all trials in the experiment have been run.</p>
+<p><strong>NOTE: Here, both <code>save_data_json()</code> and <code>save_data_csv()</code> were called to show how these can be used. Choose one.</strong></p>
+<pre><code class="js">jsPsych.init({
+    timeline: [hello_trial],
+    display_element: 'display_stage',
+
+    /* Change 5: Add the clean up and continue functions.*/
+    on_finish: function (data) {
+
+        /* Change 7: Call the save function -- CHOOSE ONE! */
+        save_data_json();
+        save_data_csv();
+
+        // clear the stage
+        jQuery('display_stage').remove();
+        jQuery('display_stage_background').remove();
+
+        // simulate click on Qualtrics &quot;next&quot; button, making use of the Qualtrics JS API
+        qthis.clickNextButton();
+    }
+});
+</code></pre>
+
+<h3 id="putting-it-all-together_1">Putting it all together</h3>
+<p>So the <code>qualtrics-save-php.js</code> code looks like this. Embed this script in Qualtrics by following <a href="../hello-world/#finally-embedding-jspsych-in-qualtrics">these steps</a> and see whether your save function works.</p>
+<pre><code class="js">Qualtrics.SurveyEngine.addOnload(function () {
+
+    /*Place your JavaScript here to run when the page loads*/
+
+    /* Change 1: Hide the Next button */
+    // Retrieve Qualtrics object and save in qthis
+    var qthis = this;
+
+    // Hide buttons
+    qthis.hideNextButton();
+
+    /* Change 2: Define and load required resources */
+    var jslib_url = &quot;https://kywch.github.io/jsPsych/&quot;;
+
+    // the below urls must be accessible with your browser
+    // for example, https://kywch.github.io/jsPsych/jspsych.js
+    var requiredResources = [
+        jslib_url + &quot;jspsych.js&quot;,
+        jslib_url + &quot;plugins/jspsych-html-keyboard-response.js&quot;
+    ];
+
+    function loadScript(idx) {
+        console.log(&quot;Loading &quot;, requiredResources[idx]);
+        jQuery.getScript(requiredResources[idx], function () {
+            if ((idx + 1) &lt; requiredResources.length) {
+                loadScript(idx + 1);
+            } else {
+                initExp();
+            }
+        });
+    }
+
+    if (window.Qualtrics &amp;&amp; (!window.frameElement || window.frameElement.id !== &quot;mobile-preview-view&quot;)) {
+        loadScript(0);
+    }
+
+    /* Change 3: Append the display_stage Div using jQuery */
+    // jQuery is loaded in Qualtrics by default
+    jQuery(&quot;&lt;div id = 'display_stage_background'&gt;&lt;/div&gt;&quot;).appendTo('body');
+    jQuery(&quot;&lt;div id = 'display_stage'&gt;&lt;/div&gt;&quot;).appendTo('body');
+
+    /* Change 6: Define necessary variables and functions for saving the results */
+    // experimental session-defining variables
+    var task_name = &quot;hello-world&quot;;
+    var sbj_id = &quot;test01&quot;;
+
+    // you must put your save_data php url here.
+    var save_url = &quot;https://users.rcc.uchicago.edu/~kywch/exp_data/save_data.php&quot;;
+    var data_dir = task_name;
+
+    // my preference is to include the task and sbj_id in the file name
+    var file_name = task_name + '_' + sbj_id; 
+
+    function save_data_json() {
+        jQuery.ajax({
+            type: 'post',
+            cache: false,
+            url: save_url,
+            data: {
+                data_dir: data_dir,
+                file_name: file_name + '.json', // the file type should be added
+                exp_data: jsPsych.data.get().json()
+            }
+        });
+    }
+
+    function save_data_csv() {
+        jQuery.ajax({
+            type: 'post',
+            cache: false,
+            url: save_url,
+            data: {
+                data_dir: data_dir,
+                file_name: file_name + '.csv', // the file type should be added
+                exp_data: jsPsych.data.get().csv()
+            }
+        });
+    }
+
+    /* Change 4: Wrap jsPsych.init() in a function */
+    function initExp() {
+
+        var hello_trial = {
+            type: 'html-keyboard-response',
+            stimulus: 'Hello world!'
+        }
+
+        jsPsych.init({
+            timeline: [hello_trial],
+            display_element: 'display_stage',
+
+            /* Change 5: Add the clean up and continue functions.*/
+            on_finish: function (data) {
+
+                /* Change 7: Call the save function -- CHOOSE ONE! */
+                save_data_json();
+                save_data_csv();
+
+                // clear the stage
+                jQuery('display_stage').remove();
+                jQuery('display_stage_background').remove();
+
+                // simulate click on Qualtrics &quot;next&quot; button, making use of the Qualtrics JS API
+                qthis.clickNextButton();
+            }
+        });
+    }
+});
+
+Qualtrics.SurveyEngine.addOnReady(function () {
+    /*Place your JavaScript here to run when the page is fully displayed*/
+
+});
+
+Qualtrics.SurveyEngine.addOnUnload(function () {
+    /*Place your JavaScript here to run when the page is unloaded*/
+
+});
+
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../rt-task/" class="btn btn-neutral float-right" title="Embedding Reaction-Time Task">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../hello-world/" class="btn btn-neutral" title="Embedding Hello World!"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>Copyright &copy; 2020 <a href="https://kywch.github.io/" target="_blank">Kyoung Whan Choe</a>. </p>
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../hello-world/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../rt-task/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
