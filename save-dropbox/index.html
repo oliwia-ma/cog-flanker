@@ -7,9 +7,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <meta name="author" content="Kyoung Whan Choe">
-  <link rel="canonical" href="https://kywch.github.io/jsPsych-in-Qualtrics/save-php/">
+  <link rel="canonical" href="https://kywch.github.io/jsPsych-in-Qualtrics/save-dropbox/">
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Saving Data with PHP - jsPsych in Qualtrics</title>
+  <title>Saving Data to your Dropbox - jsPsych in Qualtrics</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../css/theme.css" />
@@ -18,9 +18,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Saving Data with PHP";
-    var mkdocs_page_input_path = "save-php.md";
-    var mkdocs_page_url = "/jsPsych-in-Qualtrics/save-php/";
+    var mkdocs_page_name = "Saving Data to your Dropbox";
+    var mkdocs_page_input_path = "save-dropbox.md";
+    var mkdocs_page_url = "/jsPsych-in-Qualtrics/save-dropbox/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js" defer></script>
@@ -67,23 +67,21 @@
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../hello-world/">Embedding Hello World!</a>
                     </li>
-                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Saving Data with PHP</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../save-php/">Saving Data with PHP</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Saving Data to your Dropbox</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#step-0-get-access-to-a-web-server">Step 0. Get access to a web server</a>
+    <li class="toctree-l2"><a class="reference internal" href="#step-0-get-a-dropbox-account">Step 0. Get a Dropbox account</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#step-1-go-into-the-public_html-directory">Step 1. Go into the public_html directory</a>
+    <li class="toctree-l2"><a class="reference internal" href="#step-1-create-a-dropbox-app-for-saving-files">Step 1. Create a Dropbox app for saving files</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#step-2-set-up-the-directories-for-saving-experiment-files">Step 2. Set up the directories for saving experiment files</a>
+    <li class="toctree-l2"><a class="reference internal" href="#step-2-get-the-dropbox-access-token">Step 2. Get the Dropbox access token</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#step-3-create-the-save_dataphp">Step 3. Create the save_data.php</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#step-4-make-an-experiment-directory">Step 4. Make an experiment directory</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#step-5-add-the-save-function-to-the-experiment-html-script">Step 5. Add the save function to the experiment HTML script</a>
+    <li class="toctree-l2"><a class="reference internal" href="#step-3-add-the-save-function-to-the-experiment-html-script">Step 3. Add the save function to the experiment HTML script</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#change-4-defining-necessary-variables-for-saving-the-results">Change 4: Defining necessary variables for saving the results</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#change-5-defining-save-functions-using-jquery">Change 5. Defining save functions using jQuery</a>
+    <li class="toctree-l3"><a class="reference internal" href="#change-5-defining-save-functions-using-dropbox-api">Change 5. Defining save functions using Dropbox API</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#change-6-sending-the-results-file-upon-completion">Change 6: Sending the results file upon completion</a>
     </li>
@@ -91,23 +89,25 @@
     </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#step-6-add-participand-id-to-qualtrics">Step 6. Add Participand ID to Qualtrics</a>
+    <li class="toctree-l2"><a class="reference internal" href="#step-4-add-participand-id-to-qualtrics">Step 4. Add Participand ID to Qualtrics</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#step-7-use-the-save-function-from-qualtrics">Step 7. Use the save function from Qualtrics</a>
+    <li class="toctree-l2"><a class="reference internal" href="#step-5-use-the-save-function-from-qualtrics">Step 5. Use the save function from Qualtrics</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#change-6-defining-necessary-variables-and-functions-for-saving-the-results">Change 6: Defining necessary variables and functions for saving the results</a>
+    <li class="toctree-l3"><a class="reference internal" href="#change-6-loading-the-dropbox-api">Change 6: Loading the Dropbox API</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#change-7-calling-the-save-function-choose-one">Change 7: Calling the save function -- CHOOSE ONE!</a>
+    <li class="toctree-l3"><a class="reference internal" href="#change-7-adding-necessary-variables-and-functions-for-saving-the-results">Change 7: Adding necessary variables and functions for saving the results</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#change-8-calling-the-save-function-choose-one">Change 8: Calling the save function -- CHOOSE ONE!</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#putting-it-all-together_1">Putting it all together</a>
     </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#step-8-download-the-data">Step 8. Download the data</a>
+    <li class="toctree-l2"><a class="reference internal" href="#step-6-download-the-data-you-already-have-them">Step 6. Download the data? You already have them!</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#step-7-unlink-your-dropbox-app">Step 7. Unlink your Dropbox app</a>
     </li>
     </ul>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../save-dropbox/">Saving Data to your Dropbox</a>
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Part 2. Case studies</span></p>
@@ -142,7 +142,7 @@
         
       
     
-    <li>Saving Data with PHP</li>
+    <li>Saving Data to your Dropbox</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -153,172 +153,100 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="saving-jspsych-data-to-a-web-server-using-php">Saving jsPsych data to a web server using PHP</h1>
-<p>You can save the aggregated data to Qualtrics, but you may also want to look at the trial-level data for further analysis. 
-<strong>If you have access to a web server that can run PHP</strong>, then you can save each participant's data as a CSV or JSON file on the server.</p>
+                <h1 id="saving-jspsych-data-to-your-dropbox-folder">Saving jsPsych data to your Dropbox folder</h1>
+<p>Did you know Dropbox can also act like a server for saving your files? 
+So you can still save each participant's data as a CSV or JSON file <strong>without access to a web server!</strong></p>
 <hr />
-<h2 id="step-0-get-access-to-a-web-server">Step 0. Get access to a web server</h2>
-<p>Your institution usually provides you a free access to a web server, so that you can run your personal web site.
-If you are not familiar with web servers and PHP, please please ask your IT professional for help. 
-<strong>They almost always can HELP you!</strong> Also look for resources like below. </p>
-<ul>
-<li><a href="https://cse.unl.edu/faq-section/web-related">UNL.edu: Prerequisites for hosting web content on your account/setting up your first PHP page</a></li>
-<li><a href="https://ist.njit.edu/sites/ist.njit.edu/files/createwebpage_0.pdf">NJIT.edu: Step by step instructions for beginners for creating a basic Web Page</a></li>
-</ul>
+<h2 id="step-0-get-a-dropbox-account">Step 0. Get a Dropbox account</h2>
+<p>Go to <a href="https://db.tt/2ppjkYTQ">the Dropbox site</a> and create a free account.</p>
 <hr />
-<h2 id="step-1-go-into-the-public_html-directory">Step 1. Go into the <code>public_html</code> directory</h2>
-<p>If you have gained the access to a web server, login to the server and go to the <code>public_html</code> directory. If you are not sure, please read this page first: <a href="https://cse.unl.edu/faq-section/web-related">Prerequisites for hosting web content on your account/how to setup your first PHP page</a>.</p>
-<p>Reading <a href="https://files.fosswire.com/2007/08/fwunixref.pdf">this linux command cheatsheet</a> can also help.</p>
-<pre><code class="sh">$ cd ~/public_html
-</code></pre>
-
+<h2 id="step-1-create-a-dropbox-app-for-saving-files">Step 1. Create a Dropbox app for saving files</h2>
+<p>Go to <a href="https://www.dropbox.com/developers/apps/create">the Dropbox App console</a> and sign in, if necessary.</p>
+<p>Once you see a screen like below, (1) select <code>Dropbox API</code>, (2) select <code>App folder</code>, and (3) name your app. 
+I named my app <code>SaveMyExperimentData</code>. When you are done, click <code>Create app</code>.</p>
+<p><img alt="Create a Dropbox app" src="../img/save-dropbox-Step1_app_console.jpg" /></p>
 <hr />
-<h2 id="step-2-set-up-the-directories-for-saving-experiment-files">Step 2. Set up the directories for saving experiment files</h2>
-<p>Let's create a directory called <code>exp_data</code>, which will host necessary files and serve as a parent directory for your experiments by running three separate commands one-by-one.</p>
-<p>This command makes a directory called <code>exp_data</code>:</p>
-<pre><code class="sh">$ mkdir exp_data
-</code></pre>
-
-<p>This command moves you into the <code>exp_data</code> directory:</p>
-<pre><code class="sh">$ cd exp_data
-</code></pre>
-
-<p>This command shows you where you are. So you should see something like <code>/home/&lt;your-account&gt;/public_html/exp_data</code>:</p>
-<pre><code class="sh">$ pwd
-</code></pre>
-
-<p>This command prevents others from seeing inside <code>exp_data</code> by creating an empty index html file:</p>
-<pre><code class="sh">$ touch index.html
-</code></pre>
-
-<p>This command makes sure that <code>index.html</code> hides the directory structure 
-(for details of <code>.htaccess</code>, see <a href="http://www.htaccess-guide.com/directoryindex-uses/">http://www.htaccess-guide.com/directoryindex-uses/</a>)</p>
-<pre><code class="sh">$ echo &quot;DirectoryIndex index.html&quot; &gt;&gt; .htaccess
-</code></pre>
-
+<h2 id="step-2-get-the-dropbox-access-token">Step 2. Get the Dropbox access token</h2>
+<p>If your app is created successfully, you will see a screen like below. 
+Scroll down to find <code>Generate access token</code> and click the button to get the token.</p>
+<p><img alt="Get the access token" src="../img/save-dropbox-Step2_access_token.jpg" /></p>
+<p><strong><font color=red>WARNING:</font> Do NOT share this access token with anyone, 
+including sharing your code, etc.
+<font color=red>With this code, anyone can access or delete your Dropbox files and abuse your Dropbox account.</font>.</strong>
+So I suggest you two things when you finish your data collection. </p>
+<ol>
+<li><strong>Invalidate the access code</strong> by deleting the app (see the <a href="./#step-6-unlink-your-dropbox-app">Step 6</a> below). When you delete your app, saved files in your folder remains intact. </li>
+<li><strong>Replace the access code with blank</strong> in your source code, as I did in this tutorial, so that you do not accidentally publish your access code. </li>
+</ol>
 <hr />
-<h2 id="step-3-create-the-save_dataphp">Step 3. Create the <code>save_data.php</code></h2>
-<p>Let's create the PHP file that will receive and save your data by using <code>vi</code>. If you are not familiar with <code>vi</code>, 
-please read <a href="https://www.cyberciti.biz/faq/linux-unix-vim-save-and-quit-command/">this guide for using the vi editor</a>.</p>
-<p>This command will open an vi editor and let you edit it:</p>
-<pre><code class="sh">$ vi save_data.php
-</code></pre>
-
-<p>Copy-paste the below PHP code and save, then you are done with this step:</p>
-<pre><code class="php">&lt;?php
-// WARNING: the below config can cause a serious security issue.
-// Please read https://portswigger.net/web-security/cors/access-control-allow-origin
-// Once you are done testing, you should limit the access
-//header('Access-Control-Allow-Origin: https://ssd.az1.qualtrics.com');
-header('Access-Control-Allow-Origin: *');
-
-// NOTE: the below code expects three fields and will NOT work if any of these is missing.
-// - data_dir: specify the server directory to store data
-// - file_name: specify the filename of the data being saved, which can include subject id
-// - exp_data: contain the full json/csv data to be saved
-
-if (isset($_POST['exp_data']) == false) { 
-    echo('Hello'); 
-    exit; 
-}
-$exp_data = $_POST['exp_data'];
-
-/* prevent XSS:  */
-$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-
-if (isset($_POST['data_dir']) == true)
-{
-    $data_dir = $_POST['data_dir']; // data directory
-} else { exit; }
-
-if (isset($_POST['file_name']) == true)
-{
-    $file_name = $_POST['file_name']; // mturk_id
-} else { exit; }
-
-// write the file to disk
-// NOTE: you must make the data directory by all users
-// For example, by running `chmod 772` to give a write access to EVERYONE
-file_put_contents($data_dir.'/'.$file_name, $exp_data);
-
-exit;
-?&gt;
-</code></pre>
-
-<p>Your <code>save_data.php</code> url will look like <code>https://&lt;server-url&gt;/~&lt;your-account&gt;/exp_data/save_data.php</code>, like my url -- <a href="https://users.rcc.uchicago.edu/~kywch/exp_data/save_data.php">https://users.rcc.uchicago.edu/~kywch/exp_data/save_data.php</a>. Note that the <code>exp_data/save_data.php</code> part should be the same if you followed the above steps.</p>
-<p>If your script is running, you will see <strong>Hello</strong> in your browser.</p>
-<hr />
-<h2 id="step-4-make-an-experiment-directory">Step 4. Make an experiment directory</h2>
-<p>The above PHP script requires the experimenter to specify <code>data_dir</code>, in which experiment files are saved.
-Here, let's create a folder called <code>hello-world</code> under <code>exp_data</code> and save files there.
-Make sure that you are in the <code>exp_data</code> folder with <code>pwd</code>. </p>
-<p>This command makes a directory called <code>hello-world</code>:</p>
-<pre><code class="sh">$ mkdir hello-world
-</code></pre>
-
-<p>You also need to adjust this directory's permission so that the PHP script can save files. 
-To learn more about permissions, see this page: <a href="http://linuxcommand.org/lc3_lts0090.php">http://linuxcommand.org/lc3_lts0090.php</a>.</p>
-<p>This command allows the PHP script to write files in the <code>hello-world</code> directory, while preventing other people from seeing inside:</p>
-<pre><code class="sh">$ chmod 772 hello-world
-</code></pre>
-
-<hr />
-<h2 id="step-5-add-the-save-function-to-the-experiment-html-script">Step 5. Add the save function to the experiment HTML script</h2>
-<p>The server side work is done. Now, you need to add scripts to send the result file when an experiment session is done.</p>
-<p>The <code>experiment-with-display-element-save-php.html</code> file in <a href="https://github.com/kywch/jsPsych-in-Qualtrics/blob/master/hello-world/experiment-with-display-element-save-php.html">this GitHub repository</a> contains three additional changes from <code>experiment-with-display-element.html</code>. When you open <code>experiment-with-display-element-save-php.html</code> in a browser, you should see the same "Hello world!". </p>
-<p><strong><font color=red>In addtion, you will find new json and csv files under <code>hello-world</code> when you put correct url of <code>save_data.php</code> below.</font></strong></p>
+<h2 id="step-3-add-the-save-function-to-the-experiment-html-script">Step 3. Add the save function to the experiment HTML script</h2>
+<p>The Dropbox side work is done. Now, you need to add scripts to send the result file when an experiment session is done.</p>
+<p>The <code>experiment-with-display-element-save-dropbox.html</code> file in <a href="https://github.com/kywch/jsPsych-in-Qualtrics/blob/master/hello-world/experiment-with-display-element-save-dropbox.html">this GitHub repository</a> contains three additional changes from <code>experiment-with-display-element.html</code>. When you open <code>experiment-with-display-element-save-dropbox.html</code> in a browser, you should see the same "Hello world!". </p>
+<p><strong>In addtion, you will find new json and csv files in your Dropbox folder under <code>Apps/&lt;your-app-name&gt;</code>, 
+for example, <code>Apps/SaveMyExperimentData</code>.</strong></p>
 <p>We start from <code>experiment-with-display-element.html</code>, which you can see from <a href="../hello-world/#first-transformation-experiment-with-display-elementhtml">the Hello World! tutorial</a>. Let's look at these additional change.</p>
 <h3 id="change-4-defining-necessary-variables-for-saving-the-results">Change 4: Defining necessary variables for saving the results</h3>
-<p>The above <code>save_data.php</code> expects three fields -- <code>data_dir</code>, <code>file_name</code>, and <code>exp_data</code> -- and will NOT work if any of these is missing.</p>
-<ul>
-<li><code>data_dir</code> specifies the server directory to store data. You may want to include <code>task_name</code> in the directory name.</li>
-<li><code>file_name</code> specifies the filename of the result file. You may want to include the subject id. </li>
-<li><code>exp_data</code> contains the full json/csv data to be saved.</li>
-</ul>
-<p><strong><font color=red>You need to replace <code>save_url</code> with your save_data.php url.</font></strong></p>
+<p>You can set <code>task_name</code> and <code>sbj_id</code> as you like. However, you must provide a correct <code>dropbox_access_token</code>.</p>
 <pre><code class="js">// experimental session-defining variables
 var task_name = &quot;hello-world&quot;;
 var sbj_id = &quot;test01&quot;;
 
-// you must put your save_data php url here.
-var save_url = &quot;https://users.rcc.uchicago.edu/~kywch/exp_data/save_data.php&quot;;
-var data_dir = task_name;
+// YOU MUST GET YOUR OWN DROPBOX ACCESS TOKEN
+var dropbox_access_token = '&lt;PUT YOUR Dropbox ACCESS TOKEN HERE&gt;';
 
 // my preference is to include the task and sbj_id in the file name
-var file_name = task_name + '_' + sbj_id; 
+var save_filename = '/' + task_name + '/' + task_name + '_' + sbj_id;
 </code></pre>
 
-<h3 id="change-5-defining-save-functions-using-jquery">Change 5. Defining save functions using jQuery</h3>
-<p>Qualtrics loads <code>jQuery</code> by default, so you can use <code>jQuery</code> for saving files. 
-However, this html script must load <code>jQuery</code> library to use the save function.</p>
-<pre><code class="html">&lt;script src='https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js'&gt;&lt;/script&gt;
+<h3 id="change-5-defining-save-functions-using-dropbox-api">Change 5. Defining save functions using Dropbox API</h3>
+<p>You must load the Dropbox API to use it.</p>
+<pre><code class="html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/dropbox.js/4.0.30/Dropbox-sdk.min.js&quot;&gt;&lt;/script&gt;
 </code></pre>
 
 <p>You can use either the JSON or CSV format, whichever convenient for you. The save functions look like this.</p>
-<pre><code class="js">function save_data_json() {
-    jQuery.ajax({
-        type: 'post',
-        cache: false,
-        url: save_url,
-        data: {
-            data_dir: data_dir,
-            file_name: file_name + '.json', // the file type should be added
-            exp_data: jsPsych.data.get().json()
-        }
-    });
+<pre><code class="js">/* Change 5: Defining save functions using Dropbox API */
+function save_data_json() {
+    try {
+        var dbx = new Dropbox.Dropbox({
+            accessToken: dropbox_access_token
+        });
+        dbx.filesUpload({
+                path: save_filename + '.json',
+                mode: 'overwrite',
+                mute: true,
+                contents: jsPsych.data.get().json()
+            })
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.error(error);
+            });
+    } catch (err) {
+        console.log(&quot;Save data function failed.&quot;, err);
+    }
 }
 
 function save_data_csv() {
-    jQuery.ajax({
-        type: 'post',
-        cache: false,
-        url: save_url,
-        data: {
-            data_dir: data_dir,
-            file_name: file_name + '.csv', // the file type should be added
-            exp_data: jsPsych.data.get().csv()
-        }
-    });
+    try {
+        var dbx = new Dropbox.Dropbox({
+            accessToken: dropbox_access_token
+        });
+        dbx.filesUpload({
+                path: save_filename + '.csv',
+                mode: 'overwrite',
+                mute: true,
+                contents: jsPsych.data.get().csv()
+            })
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.error(error);
+            });
+    } catch (err) {
+        console.log(&quot;Save data function failed.&quot;, err);
+    }        
 }
 </code></pre>
 
@@ -340,14 +268,14 @@ The callback will trigger once all trials in the experiment have been run, so it
 </code></pre>
 
 <h3 id="putting-it-all-together">Putting it all together</h3>
-<p>So the <code>experiment-with-display-element-save-php.html</code> code looks like this. This html file should save the result files to your server.</p>
+<p>So the <code>experiment-with-display-element-save-dropbox.html</code> code looks like this. This html file should save the result files to your server.</p>
 <pre><code class="html">&lt;!DOCTYPE html&gt;
 &lt;html&gt;
 
 &lt;head&gt;
     &lt;title&gt;My experiment&lt;/title&gt;
-    &lt;!-- Change 5: Defining save functions using jQuery --&gt;
-    &lt;script src='https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js'&gt;&lt;/script&gt;
+    &lt;!-- Change 5: Defining save functions using Dropbox API --&gt;
+    &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/dropbox.js/4.0.30/Dropbox-sdk.min.js&quot;&gt;&lt;/script&gt;
     &lt;script src=&quot;jspsych-6.1.0/jspsych.js&quot;&gt;&lt;/script&gt;
     &lt;script src=&quot;jspsych-6.1.0/plugins/jspsych-html-keyboard-response.js&quot;&gt;&lt;/script&gt;
     &lt;link href=&quot;jspsych-6.1.0/css/jspsych.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;&gt;
@@ -401,44 +329,60 @@ The callback will trigger once all trials in the experiment have been run, so it
 &lt;/body&gt;
 
 &lt;script&gt;
-
     /* Change 4: Defining necessary variables for saving the results */
     // experimental session-defining variables
     var task_name = &quot;hello-world&quot;;
     var sbj_id = &quot;test01&quot;;
 
-    // you must put your save_data php url here.
-    var save_url = &quot;https://users.rcc.uchicago.edu/~kywch/exp_data/save_data.php&quot;;
-    var data_dir = task_name;
+    // YOU MUST GET YOUR OWN DROPBOX ACCESS TOKEN
+    var dropbox_access_token = '&lt;PUT YOUR Dropbox ACCESS TOKEN HERE&gt;';
 
     // my preference is to include the task and sbj_id in the file name
-    var file_name = task_name + '_' + sbj_id; 
+    var save_filename = '/' + task_name + '/' + task_name + '_' + sbj_id;
 
-    /* Change 5: Defining save functions using jQuery */
+    /* Change 5: Defining save functions using Dropbox API */
     function save_data_json() {
-        jQuery.ajax({
-            type: 'post',
-            cache: false,
-            url: save_url,
-            data: {
-                data_dir: data_dir,
-                file_name: file_name + '.json', // the file type should be added
-                exp_data: jsPsych.data.get().json()
-            }
-        });
+        try {
+            var dbx = new Dropbox.Dropbox({
+                accessToken: dropbox_access_token
+            });
+            dbx.filesUpload({
+                    path: save_filename + '.json',
+                    mode: 'overwrite',
+                    mute: true,
+                    contents: jsPsych.data.get().json()
+                })
+                .then(function (response) {
+                    console.log(response);
+                })
+                .catch(function (error) {
+                    console.error(error);
+                });
+        } catch (err) {
+            console.log(&quot;Save data function failed.&quot;, err);
+        }
     }
 
     function save_data_csv() {
-        jQuery.ajax({
-            type: 'post',
-            cache: false,
-            url: save_url,
-            data: {
-                data_dir: data_dir,
-                file_name: file_name + '.csv', // the file type should be added
-                exp_data: jsPsych.data.get().csv()
-            }
-        });
+        try {
+            var dbx = new Dropbox.Dropbox({
+                accessToken: dropbox_access_token
+            });
+            dbx.filesUpload({
+                    path: save_filename + '.csv',
+                    mode: 'overwrite',
+                    mute: true,
+                    contents: jsPsych.data.get().csv()
+                })
+                .then(function (response) {
+                    console.log(response);
+                })
+                .catch(function (error) {
+                    console.error(error);
+                });
+        } catch (err) {
+            console.log(&quot;Save data function failed.&quot;, err);
+        }        
     }
 
     var hello_trial = {
@@ -452,7 +396,7 @@ The callback will trigger once all trials in the experiment have been run, so it
         display_element: 'display_stage',
 
         /* Change 6: Sending the results file upon completion */
-        on_finish: function() {
+        on_finish: function () {
             save_data_json();
             save_data_csv();
         }
@@ -463,7 +407,7 @@ The callback will trigger once all trials in the experiment have been run, so it
 </code></pre>
 
 <hr />
-<h2 id="step-6-add-participand-id-to-qualtrics">Step 6. Add Participand ID to Qualtrics</h2>
+<h2 id="step-4-add-participand-id-to-qualtrics">Step 4. Add Participand ID to Qualtrics</h2>
 <p>Let's log in to Qualtrics. The basics of embedding jsPsych experiment into Qualtrics is explained in the <a href="../hello-world/#finally-embedding-jspsych-in-qualtrics">Embedding Hello World!</a> page. </p>
 <p>However, if you want to save the experiment data elsewhere, you must have the Participant ID so that you can link Qualtrics data and the experiment file later.
 In Qualtrics, you can keep or assign the participant ID using <a href="https://www.qualtrics.com/support/survey-platform/survey-module/survey-flow/standard-elements/embedded-data/#CreatingAnEmbeddedDataElement">Embedded Data elements</a>.</p>
@@ -492,60 +436,81 @@ However, other services suggest different field name -- for example, <a href="ht
 <p>After these steps, you should see a screen like below.</p>
 <p><img alt="Add Participant ID to Qualtrics" src="../img/save-php-Step6_participant_id.jpg" /></p>
 <hr />
-<h2 id="step-7-use-the-save-function-from-qualtrics">Step 7. Use the save function from Qualtrics</h2>
-<p>The <code>qualtrics-save-php.js</code> file in <a href="https://github.com/kywch/jsPsych-in-Qualtrics/blob/master/hello-world/qualtrics-save-php.js">this GitHub repository</a> contains additional changes from <code>qualtrics.js</code> and <code>experiment-with-display-element-save-php.html</code> and can be direclty copy-pasted into the Qualtrics Question JavaScript Editor.</p>
+<h2 id="step-5-use-the-save-function-from-qualtrics">Step 5. Use the save function from Qualtrics</h2>
+<p>The <code>qualtrics-save-dropbox.js</code> file in <a href="https://github.com/kywch/jsPsych-in-Qualtrics/blob/master/hello-world/qualtrics-save-php.js">this GitHub repository</a> contains additional changes from <code>qualtrics.js</code> and <code>experiment-with-display-element-save-dropbox.html</code> and can be direclty copy-pasted into the Qualtrics Question JavaScript Editor.</p>
 <p>We start from <code>qualtrics.js</code>, which you can see from <a href="../hello-world/#second-transformation-qualtricsjs">the Hello World! tutorial</a>. 
 Let's look at these additional change.</p>
-<h3 id="change-6-defining-necessary-variables-and-functions-for-saving-the-results">Change 6: Defining necessary variables and functions for saving the results</h3>
+<h3 id="change-6-loading-the-dropbox-api">Change 6: Loading the Dropbox API</h3>
+<p>Add the Dropbox API library <code>https://cdnjs.cloudflare.com/ajax/libs/dropbox.js/4.0.30/Dropbox-sdk.min.js</code>
+to <code>requiredResources</code> like below so that Qualtrics loads the Dropbox API.</p>
+<pre><code class="js">var requiredResources = [
+    'https://cdnjs.cloudflare.com/ajax/libs/dropbox.js/4.0.30/Dropbox-sdk.min.js', // Change 6: Loading the Dropbox API
+    jslib_url + &quot;jspsych.js&quot;,
+    jslib_url + &quot;plugins/jspsych-html-keyboard-response.js&quot;
+];
+</code></pre>
+
+<h3 id="change-7-adding-necessary-variables-and-functions-for-saving-the-results">Change 7: Adding necessary variables and functions for saving the results</h3>
 <p>The below javascript defines necessary variables and functions for saving the results.
 Importantly, this script will grab the Participant ID from the Embedded Data <code>workerId</code>, using the piped text <code>${e://Field/workerId}</code>, 
 and put it in the data file name.</p>
-<p>The above <code>save_data.php</code> expects three fields -- <code>data_dir</code>, <code>file_name</code>, and <code>exp_data</code> -- and will NOT work if any of these is missing.</p>
-<ul>
-<li><code>data_dir</code> specifies the server directory to store data. You may want to include <code>task_name</code> in the directory name.</li>
-<li><code>file_name</code> specifies the filename of the data being saved. </li>
-<li><code>exp_data</code> contains the full json/csv data to be saved.</li>
-</ul>
-<p><strong><font color=red>You need to replace <code>save_url</code> with your save_data.php url.</font></strong></p>
+<p><strong>IMPORTANT: You must also provide a correct <code>dropbox_access_token</code>.</strong> </p>
 <pre><code class="js">// experimental session-defining variables
 var task_name = &quot;hello-world&quot;;
 var sbj_id = &quot;${e://Field/workerId}&quot;;
 
-// you must put your save_data php url here.
-var save_url = &quot;https://users.rcc.uchicago.edu/~kywch/exp_data/save_data.php&quot;;
-var data_dir = task_name;
+// YOU MUST GET YOUR OWN DROPBOX ACCESS TOKEN
+var dropbox_access_token = '&lt;PUT YOUR Dropbox ACCESS TOKEN HERE&gt;';
 
 // my preference is to include the task and sbj_id in the file name
-var file_name = task_name + '_' + sbj_id; 
+var save_filename = '/' + task_name + '/' + task_name + '_' + sbj_id;
 
 function save_data_json() {
-    jQuery.ajax({
-        type: 'post',
-        cache: false,
-        url: save_url,
-        data: {
-            data_dir: data_dir,
-            file_name: file_name + '.json', // the file type should be added
-            exp_data: jsPsych.data.get().json()
-        }
-    });
+    try {
+        var dbx = new Dropbox.Dropbox({
+            accessToken: dropbox_access_token
+        });
+        dbx.filesUpload({
+                path: save_filename + '.json',
+                mode: 'overwrite',
+                mute: true,
+                contents: jsPsych.data.get().json()
+            })
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.error(error);
+            });
+    } catch (err) {
+        console.log(&quot;Save data function failed.&quot;, err);
+    }
 }
 
 function save_data_csv() {
-    jQuery.ajax({
-        type: 'post',
-        cache: false,
-        url: save_url,
-        data: {
-            data_dir: data_dir,
-            file_name: file_name + '.csv', // the file type should be added
-            exp_data: jsPsych.data.get().csv()
-        }
-    });
+    try {
+        var dbx = new Dropbox.Dropbox({
+            accessToken: dropbox_access_token
+        });
+        dbx.filesUpload({
+                path: save_filename + '.csv',
+                mode: 'overwrite',
+                mute: true,
+                contents: jsPsych.data.get().csv()
+            })
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.error(error);
+            });
+    } catch (err) {
+        console.log(&quot;Save data function failed.&quot;, err);
+    }        
 }
 </code></pre>
 
-<h3 id="change-7-calling-the-save-function-choose-one">Change 7: Calling the save function -- CHOOSE ONE!</h3>
+<h3 id="change-8-calling-the-save-function-choose-one">Change 8: Calling the save function -- CHOOSE ONE!</h3>
 <p>The save function was added inside <code>on_finish</code>, which is called once all trials in the experiment have been run.</p>
 <p>The participant ID, <code>sbj_id</code>, was added to the data itself, so that you can match the data file even when the file name is changed.</p>
 <p><strong>NOTE: Here, both <code>save_data_json()</code> and <code>save_data_csv()</code> were called to show how these can be used. Choose one.</strong></p>
@@ -553,14 +518,13 @@ function save_data_csv() {
     timeline: [hello_trial],
     display_element: 'display_stage',
 
-    /* Change 5: Add the clean up and continue functions.*/
+    /* Change 5: Adding the clean up and continue functions.*/
     on_finish: function (data) {
 
-        /* Change 7: Calling the save function -- CHOOSE ONE! */
+        /* Change 8: Calling the save function -- CHOOSE ONE! */
         // include the participant ID in the data
         // this must be done before saving
         jsPsych.data.get().addToLast({participant: sbj_id});        
-
         save_data_json();
         save_data_csv();
 
@@ -575,7 +539,7 @@ function save_data_csv() {
 </code></pre>
 
 <h3 id="putting-it-all-together_1">Putting it all together</h3>
-<p>So the <code>qualtrics-save-php.js</code> code looks like this. Embed this script in Qualtrics by following <a href="../hello-world/#finally-embedding-jspsych-in-qualtrics">these steps</a> and see whether your save function works.</p>
+<p>So the <code>qualtrics-save-dropbox.js</code> code looks like this. Embed this script in Qualtrics by following <a href="../hello-world/#finally-embedding-jspsych-in-qualtrics">these steps</a> and see whether your save function works.</p>
 <pre><code class="js">Qualtrics.SurveyEngine.addOnload(function () {
 
     /*Place your JavaScript here to run when the page loads*/
@@ -587,12 +551,13 @@ function save_data_csv() {
     // Hide buttons
     qthis.hideNextButton();
 
-    /* Change 2: Defining and load required resources */
+    /* Change 2: Defining and loading required resources */
     var jslib_url = &quot;https://kywch.github.io/jsPsych/&quot;;
 
     // the below urls must be accessible with your browser
     // for example, https://kywch.github.io/jsPsych/jspsych.js
     var requiredResources = [
+        'https://cdnjs.cloudflare.com/ajax/libs/dropbox.js/4.0.30/Dropbox-sdk.min.js', // Change 6: Loading the Dropbox API
         jslib_url + &quot;jspsych.js&quot;,
         jslib_url + &quot;plugins/jspsych-html-keyboard-response.js&quot;
     ];
@@ -617,45 +582,62 @@ function save_data_csv() {
     jQuery(&quot;&lt;div id = 'display_stage_background'&gt;&lt;/div&gt;&quot;).appendTo('body');
     jQuery(&quot;&lt;div id = 'display_stage'&gt;&lt;/div&gt;&quot;).appendTo('body');
 
-    /* Change 6: Defining necessary variables and functions for saving the results */
+    /* Change 7: Adding necessary variables and functions for saving the results */
     // experimental session-defining variables
     var task_name = &quot;hello-world&quot;;
     var sbj_id = &quot;${e://Field/workerId}&quot;;
 
-    // you must put your save_data php url here.
-    var save_url = &quot;https://users.rcc.uchicago.edu/~kywch/exp_data/save_data.php&quot;;
-    var data_dir = task_name;
+    // YOU MUST GET YOUR OWN DROPBOX ACCESS TOKEN
+    var dropbox_access_token = '&lt;PUT YOUR Dropbox ACCESS TOKEN HERE&gt;';
 
     // my preference is to include the task and sbj_id in the file name
-    var file_name = task_name + '_' + sbj_id; 
+    var save_filename = '/' + task_name + '/' + task_name + '_' + sbj_id;
 
     function save_data_json() {
-        jQuery.ajax({
-            type: 'post',
-            cache: false,
-            url: save_url,
-            data: {
-                data_dir: data_dir,
-                file_name: file_name + '.json', // the file type should be added
-                exp_data: jsPsych.data.get().json()
-            }
-        });
+        try {
+            var dbx = new Dropbox.Dropbox({
+                accessToken: dropbox_access_token
+            });
+            dbx.filesUpload({
+                    path: save_filename + '.json',
+                    mode: 'overwrite',
+                    mute: true,
+                    contents: jsPsych.data.get().json()
+                })
+                .then(function (response) {
+                    console.log(response);
+                })
+                .catch(function (error) {
+                    console.error(error);
+                });
+        } catch (err) {
+            console.log(&quot;Save data function failed.&quot;, err);
+        }
     }
 
     function save_data_csv() {
-        jQuery.ajax({
-            type: 'post',
-            cache: false,
-            url: save_url,
-            data: {
-                data_dir: data_dir,
-                file_name: file_name + '.csv', // the file type should be added
-                exp_data: jsPsych.data.get().csv()
-            }
-        });
+        try {
+            var dbx = new Dropbox.Dropbox({
+                accessToken: dropbox_access_token
+            });
+            dbx.filesUpload({
+                    path: save_filename + '.csv',
+                    mode: 'overwrite',
+                    mute: true,
+                    contents: jsPsych.data.get().csv()
+                })
+                .then(function (response) {
+                    console.log(response);
+                })
+                .catch(function (error) {
+                    console.error(error);
+                });
+        } catch (err) {
+            console.log(&quot;Save data function failed.&quot;, err);
+        }        
     }
 
-    /* Change 4: Wrapping jsPsych.init() in a function */
+    /* Change 4: Wraping jsPsych.init() in a function */
     function initExp() {
 
         var hello_trial = {
@@ -670,7 +652,7 @@ function save_data_csv() {
             /* Change 5: Adding the clean up and continue functions.*/
             on_finish: function (data) {
 
-                /* Change 7: Calling the save function -- CHOOSE ONE! */
+                /* Change 8: Calling the save function -- CHOOSE ONE! */
                 // include the participant ID in the data
                 // this must be done before saving
                 jsPsych.data.get().addToLast({participant: sbj_id});
@@ -701,21 +683,20 @@ Qualtrics.SurveyEngine.addOnUnload(function () {
 </code></pre>
 
 <hr />
-<h2 id="step-8-download-the-data">Step 8. Download the data</h2>
-<p>When your experiment is done, you can easily download the result files with the following steps.</p>
-<p>First, log in to your account. Then, this command takes you to the <code>exp_data</code> that you made.</p>
-<pre><code class="sh">$ cd ~/public_html/exp_data
-</code></pre>
-
-<p>This command compresses the directory with the result files (in this case <code>hello-world</code>).
-You need to replace <code>hello-world</code> with your own experiment/directory.</p>
-<pre><code class="sh">$ zip -r hello-world.zip hello-world
-</code></pre>
-
-<p>You can access the zipped file through your web-browser by going to <code>https://&lt;server-url&gt;/~&lt;your-account&gt;/exp_data/hello-world.zip</code>, like my url -- <a href="https://users.rcc.uchicago.edu/~kywch/exp_data/hello-world.zip">https://users.rcc.uchicago.edu/~kywch/exp_data/hello-world.zip</a>.</p>
-<p>After downloading the zipped file, you may want to delete it.</p>
-<pre><code class="sh">$ rm hello-world.zip
-</code></pre>
+<h2 id="step-6-download-the-data-you-already-have-them">Step 6. Download the data? You already have them!</h2>
+<p>When an experimental session finishes, its file will instantly delivered to your Dropbox folder. </p>
+<p>Isn't it nice?</p>
+<hr />
+<h2 id="step-7-unlink-your-dropbox-app">Step 7. Unlink your Dropbox app</h2>
+<p>As I mentioned in the <a href="#step-2-get-the-dropbox-access-token">Step 2</a>, 
+the Dropbox access token you have is dangerous because anyone with the code can
+access or delete your Dropbox files and abuse your Dropbox account.</p>
+<p>So it is safe to delete the app after your data collection is done.
+However, <strong>the saved files in your Dropbox folder remains intact,</strong> so you don't need to worry.</p>
+<p>Deleting the app is very simple. Go to <a href="https://www.dropbox.com/developers/apps/">the Dropbox App console</a>, 
+click your app, scroll down, and click the <code>Delete app</code> button.</p>
+<p><img alt="Unlink the Dropbox app" src="../img/save-dropbox-Step6_unlink_app.jpg" /></p>
+<p>After this step, your Dropbox is safe.</p>
               
             </div>
           </div>
@@ -723,10 +704,10 @@ You need to replace <code>hello-world</code> with your own experiment/directory.
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../save-dropbox/" class="btn btn-neutral float-right" title="Saving Data to your Dropbox">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../rt-task/" class="btn btn-neutral float-right" title="Embedding Reaction-Time Task">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../hello-world/" class="btn btn-neutral" title="Embedding Hello World!"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../save-php/" class="btn btn-neutral" title="Saving Data with PHP"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -754,10 +735,10 @@ You need to replace <code>hello-world</code> with your own experiment/directory.
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../hello-world/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../save-php/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../save-dropbox/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../rt-task/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

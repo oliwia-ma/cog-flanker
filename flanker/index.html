@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <meta name="author" content="Kyoung Whan Choe">
-  
+  <link rel="canonical" href="https://kywch.github.io/jsPsych-in-Qualtrics/flanker/">
   <link rel="shortcut icon" href="../img/favicon.ico">
   <title>Embedding Flanker Task - jsPsych in Qualtrics</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
@@ -20,7 +20,7 @@
     // Current page data
     var mkdocs_page_name = "Embedding Flanker Task";
     var mkdocs_page_input_path = "flanker.md";
-    var mkdocs_page_url = null;
+    var mkdocs_page_url = "/jsPsych-in-Qualtrics/flanker/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js" defer></script>
@@ -61,23 +61,21 @@
                     <li class="toctree-l1"><a class="reference internal" href="..">Introduction</a>
                     </li>
                 </ul>
+                <p class="caption"><span class="caption-text">Part 1. The Basics</span></p>
                 <ul>
                     <li class="toctree-l1"><a class="reference internal" href="../github-pages/">Hosting jsPsych</a>
                     </li>
-                </ul>
-                <ul>
                     <li class="toctree-l1"><a class="reference internal" href="../hello-world/">Embedding Hello World!</a>
                     </li>
-                </ul>
-                <ul>
                     <li class="toctree-l1"><a class="reference internal" href="../save-php/">Saving Data with PHP</a>
                     </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../rt-task/">Embedding Reaction-Time Task</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../save-dropbox/">Saving Data to your Dropbox</a>
                     </li>
                 </ul>
+                <p class="caption"><span class="caption-text">Part 2. Case studies</span></p>
                 <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="../rt-task/">Embedding Reaction-Time Task</a>
+                    </li>
                     <li class="toctree-l1 current"><a class="reference internal current" href="./">Embedding Flanker Task</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#the-start-demo-flanker-taskhtml">The start: demo-flanker-task.html</a>
@@ -132,17 +130,17 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#third-transformation-demo-flanker-qualtricsjs">Third transformation: demo-flanker-qualtrics.js</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#change-1-hide-the-next-button">Change 1: Hide the Next button</a>
+    <li class="toctree-l3"><a class="reference internal" href="#change-1-hiding-the-next-button">Change 1: Hiding the Next button</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#change-2-define-and-load-required-resources">Change 2: Define and load required resources</a>
+    <li class="toctree-l3"><a class="reference internal" href="#change-2-defining-and-load-required-resources">Change 2: Defining and load required resources</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#change-3-append-the-display_stage-div-using-jquery">Change 3: Append the display_stage Div using jQuery</a>
+    <li class="toctree-l3"><a class="reference internal" href="#change-3-appending-the-display_stage-div-using-jquery">Change 3: Appending the display_stage Div using jQuery</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#change-4-wrap-jspsychinit-in-a-function">Change 4: Wrap jsPsych.init() in a function</a>
+    <li class="toctree-l3"><a class="reference internal" href="#change-4-wrapping-jspsychinit-in-a-function">Change 4: Wrapping jsPsych.init() in a function</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#change-5-summarize-and-save-the-results-to-qualtrics">Change 5: Summarize and save the results to Qualtrics</a>
+    <li class="toctree-l3"><a class="reference internal" href="#change-5-summarizing-and-save-the-results-to-qualtrics">Change 5: Summarizing and save the results to Qualtrics</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#change-6-add-the-clean-up-and-continue-functions">Change 6: Add the clean up and continue functions</a>
+    <li class="toctree-l3"><a class="reference internal" href="#change-6-adding-the-clean-up-and-continue-functions">Change 6: Adding the clean up and continue functions</a>
     </li>
         </ul>
     </li>
@@ -165,12 +163,6 @@
         </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#do-you-also-want-to-save-the-trial-by-trial-data">Do you also want to save the trial-by-trial data?</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#first-prepare-unique-participant-ids-in-qualtrics">First, prepare unique participant IDs in Qualtrics.</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#second-add-the-necessary-variablesfunctions-for-saving">Second, add the necessary variables/functions for saving</a>
-    </li>
-        </ul>
     </li>
     </ul>
                     </li>
@@ -194,6 +186,10 @@
   <ul class="wy-breadcrumbs">
     <li><a href="..">Docs</a> &raquo;</li>
     
+      
+        
+          <li>Part 2. Case studies &raquo;</li>
+        
       
     
     <li>Embedding Flanker Task</li>
@@ -531,7 +527,7 @@ Qualtrics.SurveyEngine.addOnUnload(function()
 <p>The <code>demo-flanker-qualtrics.js</code> file in <a href="https://github.com/kywch/jsPsych-in-Qualtrics/blob/master/rt-task/demo-simple-rt-task-qualtrics.js">this GitHub repository</a> contains several changes from <code>demo-flanker-transformed-with-display-element.html</code> and can be direclty copy-pasted into the Qualtrics Question JavaScript Editor.</p>
 <p>By separating the experiment-related code from the operation-related code, converting the html file to Qualtrics JavaScript function is pretty much similar to <a href="../hello-world/#second-transformation-qualtricsjs">the Hello-World example</a>.</p>
 <p>Let's look at each change.</p>
-<h3 id="change-1-hide-the-next-button">Change 1: Hide the Next button</h3>
+<h3 id="change-1-hiding-the-next-button">Change 1: Hiding the Next button</h3>
 <p>The below javascript code hides the Next button and puts the javascript code in the driving seat.</p>
 <pre><code class="js">// Retrieve Qualtrics object and save in qthis
 var qthis = this;
@@ -540,7 +536,7 @@ var qthis = this;
 qthis.hideNextButton();
 </code></pre>
 
-<h3 id="change-2-define-and-load-required-resources">Change 2: Define and load required resources</h3>
+<h3 id="change-2-defining-and-load-required-resources">Change 2: Defining and load required resources</h3>
 <p>The below javascript defines where the necessary files are so that Qualtrics can load these. If you enabled GitHub Pages of your repository, Qualtrics can load the necessary JS, CSS, and image files right away. Or, you can provide the embeddable links via jsDelivr. Here, let's continue to use jsDelivr.</p>
 <p>One way to check whether these files are accessilbe is to view the source of <code>demo-flanker-transformed.html</code> and click the imported scripts. For example of <code>jspsych.js</code>, <a href='https://cdn.jsdelivr.net/gh/kywch/jsPsych-in-Qualtrics/flanker/jspsych-6.1.0/jspsych.js'>https://cdn.jsdelivr.net/gh/kywch/jsPsych-in-Qualtrics/flanker/jspsych-6.1.0/jspsych.js</a>.</p>
 <pre><code class="js">// https://cdn.jsdelivr.net/gh/&lt;github-username&gt;/&lt;repository-name&gt;/&lt;experiment-folder&gt;
@@ -570,16 +566,16 @@ if (window.Qualtrics &amp;&amp; (!window.frameElement || window.frameElement.id 
 }
 </code></pre>
 
-<h3 id="change-3-append-the-display_stage-div-using-jquery">Change 3: Append the display_stage Div using jQuery</h3>
+<h3 id="change-3-appending-the-display_stage-div-using-jquery">Change 3: Appending the display_stage Div using jQuery</h3>
 <p>In Qualtrics, jQuery (loaded by default) is used to append the <code>display_stage_background</code> and <code>display_stage</code> Divs. The CSS for these elements will be added directly to Question HTML later in this tutorial.</p>
 <pre><code class="js">// jQuery is loaded in Qualtrics by default
 jQuery(&quot;&lt;div id = 'display_stage_background'&gt;&lt;/div&gt;&quot;).appendTo('body');
 jQuery(&quot;&lt;div id = 'display_stage'&gt;&lt;/div&gt;&quot;).appendTo('body');
 </code></pre>
 
-<h3 id="change-4-wrap-jspsychinit-in-a-function">Change 4: Wrap jsPsych.init() in a function</h3>
+<h3 id="change-4-wrapping-jspsychinit-in-a-function">Change 4: Wrapping jsPsych.init() in a function</h3>
 <p>The main experiment codes are wrapped in the <code>initExp</code> function to make sure it runs after all the necessary library and plugin files are loaded (as defined in the <code>loadScript</code> function above).</p>
-<h3 id="change-5-summarize-and-save-the-results-to-qualtrics">Change 5: Summarize and save the results to Qualtrics</h3>
+<h3 id="change-5-summarizing-and-save-the-results-to-qualtrics">Change 5: Summarizing and save the results to Qualtrics</h3>
 <p><a href="https://www.jspsych.org/tutorials/rt-task/#part-11-data-aggregation">The jsPsych tutorial</a> shows you how you can process and summarize the experiment results online. <strong>Wouldn't it be great if your experiment results are directly included in your Qualtrics data?</strong> </p>
 <p>Well, you can actually summarize the results online and save those results in <a href="https://www.qualtrics.com/support/survey-platform/survey-module/survey-flow/standard-elements/embedded-data/">Qualtrics' Embedded Data</a> using the <a href="https://s.qualtrics.com/WRAPI/QuestionAPI/classes/Qualtrics%20JavaScript%20Question%20API.html#method_setEmbeddedData">setEmbeddedData</a> function.</p>
 <p><code>demo-flanker-qualtrics.js</code> does so when the jsPsych experiment finishes by running the below code from <a href="https://github.com/kywch/jsPsych-in-Qualtrics/tree/master/flanker#part-5-presenting-feedback-to-the-participants"><code>debrief_block</code></a>.</p>
@@ -587,7 +583,7 @@ jQuery(&quot;&lt;div id = 'display_stage'&gt;&lt;/div&gt;&quot;).appendTo('body'
     timeline: timeline,
     display_element: 'display_stage',
     on_finish: function (data) {
-        /* Change 5: Summarize and save the results to Qualtrics */
+        /* Change 5: Summarizing and save the results to Qualtrics */
         // summarize the results
         var total_trials = jsPsych.data.get().filter({
             trial_type: 'image-keyboard-response'
@@ -609,7 +605,7 @@ jQuery(&quot;&lt;div id = 'display_stage'&gt;&lt;/div&gt;&quot;).appendTo('body'
         Qualtrics.SurveyEngine.setEmbeddedData(&quot;congruent_rt&quot;, congruent_rt);
         Qualtrics.SurveyEngine.setEmbeddedData(&quot;incongruent_rt&quot;, incongruent_rt);
 
-        /* Change 6: Add the clean up and continue functions.*/
+        /* Change 6: Adding the clean up and continue functions.*/
         // clear the stage
         jQuery('display_stage').remove();
         jQuery('display_stage_background').remove();
@@ -620,7 +616,7 @@ jQuery(&quot;&lt;div id = 'display_stage'&gt;&lt;/div&gt;&quot;).appendTo('body'
 });
 </code></pre>
 
-<h3 id="change-6-add-the-clean-up-and-continue-functions">Change 6: Add the clean up and continue functions</h3>
+<h3 id="change-6-adding-the-clean-up-and-continue-functions">Change 6: Adding the clean up and continue functions</h3>
 <p>When the jsPsych ends, <code>display_stage</code> and <code>display_stage_background</code> should be removed. Then, execulte the <code>clickNextButton</code> to simulate clicking the Next button and proceed to the next question.</p>
 <hr />
 <h2 id="finally-embedding-jspsych-in-qualtrics">Finally, embedding jsPsych in Qualtrics</h2>
@@ -670,15 +666,11 @@ You can do so by showing the <code>accuracy</code>, <code>congruent_rt</code>, a
 <p>Publish the survey by following <a href="https://www.qualtrics.com/support/survey-platform/survey-module/survey-publishing-versions/#PublishingNew">this Qualtrics tutorial</a>. Then, an anonymous Qualtrics link is generated. If you click this link, you should be able to see the same reaction time task running in Qualtrics. For example, try <a href="https://ssd.az1.qualtrics.com/jfe/form/SV_enXPx66m9iOM6Sp">this Qualtrics link</a>.</p>
 <hr />
 <h2 id="do-you-also-want-to-save-the-trial-by-trial-data">Do you also want to save the trial-by-trial data?</h2>
-<h3 id="first-prepare-unique-participant-ids-in-qualtrics">First, prepare unique participant IDs in Qualtrics.</h3>
-<p>If you are not doing this already. Please refer to the below resources.</p>
-<ul>
-<li><a href="https://www.qualtrics.com/support/survey-platform/common-use-cases-rc/assigning-randomized-ids-to-respondents/">Qualtrics.com: Assigning Randomized IDs to Respondents</a></li>
-<li><a href="https://ithelp.brown.edu/kb/articles/use-qualtrics-for-human-subject-research-using-pre-generated-participant-ids">Brown.edu: Use Qualtrics for Human Subject Research: Using Pre-Generated Participant IDs</a></li>
-<li><a href="https://www.cloudresearch.com/resources/blog/workerid-and-all-mturk-fields-sent-to-qualtrics/">Cloudresearch.com: WorkerID (And All MTurk Fields) Sent to Qualtrics</a></li>
-</ul>
-<h3 id="second-add-the-necessary-variablesfunctions-for-saving">Second, add the necessary variables/functions for saving</h3>
-<p>Please refer to the <a href="../save-php/">Saving Data with PHP tutorial</a>.</p>
+<p>I describe two ways for saving the experiment files in these tutorials. </p>
+<ol>
+<li><a href="../save-php/">Saving data to a web server using PHP</a></li>
+<li><a href="../save-dropbox/">Saving data to your Dropbox folder</a></li>
+</ol>
               
             </div>
           </div>

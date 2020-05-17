@@ -1,27 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url>
-     <loc>None</loc>
-     <lastmod>2020-05-16</lastmod>
+     <loc>https://kywch.github.io/jsPsych-in-Qualtrics/</loc>
+     <lastmod>2020-05-17</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>None</loc>
-     <lastmod>2020-05-16</lastmod>
+     <loc>https://kywch.github.io/jsPsych-in-Qualtrics/github-pages/</loc>
+     <lastmod>2020-05-17</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>None</loc>
-     <lastmod>2020-05-16</lastmod>
+     <loc>https://kywch.github.io/jsPsych-in-Qualtrics/hello-world/</loc>
+     <lastmod>2020-05-17</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>None</loc>
-     <lastmod>2020-05-16</lastmod>
+     <loc>https://kywch.github.io/jsPsych-in-Qualtrics/save-php/</loc>
+     <lastmod>2020-05-17</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>None</loc>
-     <lastmod>2020-05-16</lastmod>
+     <loc>https://kywch.github.io/jsPsych-in-Qualtrics/save-dropbox/</loc>
+     <lastmod>2020-05-17</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>None</loc>
-     <lastmod>2020-05-16</lastmod>
+     <loc>https://kywch.github.io/jsPsych-in-Qualtrics/rt-task/</loc>
+     <lastmod>2020-05-17</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://kywch.github.io/jsPsych-in-Qualtrics/flanker/</loc>
+     <lastmod>2020-05-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
 </urlset>
