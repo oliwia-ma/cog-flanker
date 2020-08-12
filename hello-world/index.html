@@ -126,6 +126,8 @@
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../flanker/">Embedding Flanker Task</a>
                     </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../stop-it/">Embedding Stop Signal Task (STOP-IT)</a>
+                    </li>
                 </ul>
       </div>
     </div>
@@ -514,7 +516,48 @@ Qualtrics.SurveyEngine.addOnUnload(function () {
 <p>The Change 3 section of the <code>experiment-with-display-element.html</code> file contains the link to jsPsych CSS file, the inline styles for <code>display_stage</code> Div, and the error message to be displayed when things go wrong.</p>
 <p>To open the HTML editor, click the <code>HTML View</code> button. </p>
 <p><img alt="Open the Question HTML editor" src="../img/hello-world-qualtrics-Step3_open_question_html_editor.jpg" /></p>
-<p>Then, copy paste the portion of <code>experiment-with-display-element.html</code> to the HTML editor, starting from <code>&lt;!-- COPY PASTE TO QUALTRICS FROM HERE --&gt;</code> to <code>&lt;!-- COPY PASTE TO QUALTRICS UP TO HERE --&gt;</code>. After copy pasting, you should see something like below.</p>
+<p>Then, copy paste the portion of <code>experiment-with-display-element.html</code> to the HTML editor, starting from <code>&lt;!-- COPY PASTE TO QUALTRICS FROM HERE --&gt;</code> to <code>&lt;!-- COPY PASTE TO QUALTRICS UP TO HERE --&gt;</code>. </p>
+<pre><code class="html">&lt;!-- Change 3: Adding extra scripts for Qualtrics --&gt;
+&lt;!-- COPY PASTE TO QUALTRICS FROM HERE --&gt;
+&lt;link href=&quot;https://kywch.github.io/jsPsych/css/jspsych.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;&gt;&lt;/link&gt;
+
+&lt;div&gt;
+&lt;span style=&quot;font-size: 24px;&quot;&gt;
+    &lt;br&gt;&lt;br&gt;
+    If you are seeing this message for &lt;span style=&quot;color: rgb(255, 0, 0);&quot;&gt;&lt;b&gt;more than 5
+        minutes&lt;/b&gt;&lt;/span&gt;,&lt;br&gt;
+    please screen-capture this screen and send the image to us.
+    &lt;br&gt;&lt;br&gt;
+    &lt;span style=&quot;font-size: 28px;&quot;&gt;We are very sorry for the inconvenience.&lt;/span&gt;
+&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;!-- Change 2: Adding `display_stage` CSS and Div --&gt;
+&lt;style&gt;
+#display_stage_background {
+    width: 100vw;
+    background-color: white;
+    z-index: -1;
+}
+
+#display_stage {
+    position: fixed;
+    left: 1vw;
+    top: 1vh;
+    height: 98vh;
+    width: 98vw;
+    background-color: white;
+    box-shadow: 1px 1px 1px #999;
+    border-radius: 15px;
+    z-index: 0;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+&lt;/style&gt;
+&lt;!-- COPY PASTE TO QUALTRICS UP TO HERE --&gt;
+</code></pre>
+
+<p>After copy pasting, you should see something like below.</p>
 <p><img alt="After copy-paste" src="../img/hello-world-qualtrics-Step3_after_copy_paste.jpg" /></p>
 <h3 id="step-4-publish-and-test">Step 4. Publish and test!</h3>
 <p>Publish the survey by following <a href="https://www.qualtrics.com/support/survey-platform/survey-module/survey-publishing-versions/#PublishingNew">this Qualtrics tutorial</a>. Then, an anonymous Qualtrics link is generated. If you click this link, you should be able to see "Hello World!" in Qualtrics. For example, here is <a href="https://ssd.az1.qualtrics.com/jfe/form/SV_ehvC3v9MYG83YMJ">a just another Hello-World Qualtrics survey</a>.</p>
