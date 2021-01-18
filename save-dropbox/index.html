@@ -75,9 +75,11 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#step-1-create-a-dropbox-app-for-saving-files">Step 1. Create a Dropbox app for saving files</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#step-2-get-the-dropbox-access-token">Step 2. Get the Dropbox access token</a>
+    <li class="toctree-l2"><a class="reference internal" href="#step-2-give-the-necessary-permisions-for-uploading-files">Step 2. Give the necessary permisions for uploading files</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#step-3-add-the-save-function-to-the-experiment-html-script">Step 3. Add the save function to the experiment HTML script</a>
+    <li class="toctree-l2"><a class="reference internal" href="#step-3-get-the-dropbox-access-token">Step 3. Get the Dropbox access token</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#step-4-add-the-save-function-to-the-experiment-html-script">Step 4. Add the save function to the experiment HTML script</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#change-4-defining-necessary-variables-for-saving-the-results">Change 4: Defining necessary variables for saving the results</a>
     </li>
@@ -89,9 +91,9 @@
     </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#step-4-add-participand-id-to-qualtrics">Step 4. Add Participand ID to Qualtrics</a>
+    <li class="toctree-l2"><a class="reference internal" href="#step-5-add-participand-id-to-qualtrics">Step 5. Add Participand ID to Qualtrics</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#step-5-use-the-save-function-from-qualtrics">Step 5. Use the save function from Qualtrics</a>
+    <li class="toctree-l2"><a class="reference internal" href="#step-6-use-the-save-function-from-qualtrics">Step 6. Use the save function from Qualtrics</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#change-6-loading-the-dropbox-api">Change 6: Loading the Dropbox API</a>
     </li>
@@ -103,9 +105,9 @@
     </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#step-6-download-the-data-you-already-have-them">Step 6. Download the data? You already have them!</a>
+    <li class="toctree-l2"><a class="reference internal" href="#step-7-download-the-data-you-already-have-them">Step 7. Download the data? You already have them!</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#step-7-unlink-your-dropbox-app">Step 7. Unlink your Dropbox app</a>
+    <li class="toctree-l2"><a class="reference internal" href="#step-8-unlink-your-dropbox-app">Step 8. Unlink your Dropbox app</a>
     </li>
     </ul>
                     </li>
@@ -164,30 +166,40 @@
                 <h1 id="saving-jspsych-data-to-your-dropbox-folder">Saving jsPsych data to your Dropbox folder</h1>
 <p>Did you know Dropbox can also act like a server for saving your files? 
 You can save each participant's data file <strong>without access to a web server!</strong></p>
+<p><strong><font color=red>WARNING</font>: Dropbox will retire the creation of long-lived access tokens on <font color=red>September 30th, 2021</font>. After that, this tutorial <font color=red>WILL NOT</font> work. So, please plan your experiments accordingly.</strong> See <a href="https://dropbox.tech/developers/migrating-app-permissions-and-access-tokens">the Dropbox announcement</a>.</p>
 <hr />
 <h2 id="step-0-get-a-dropbox-account">Step 0. Get a Dropbox account</h2>
 <p>Go to <a href="https://db.tt/2ppjkYTQ">the Dropbox site</a> and create a free account.</p>
 <hr />
 <h2 id="step-1-create-a-dropbox-app-for-saving-files">Step 1. Create a Dropbox app for saving files</h2>
 <p>Go to <a href="https://www.dropbox.com/developers/apps/create">the Dropbox App console</a> and sign in, if necessary.</p>
-<p>Once you see a screen like below, (1) select <code>Dropbox API</code>, (2) select <code>App folder</code>, and (3) name your app. 
+<p>Once you see a screen like below, (1) select <code>Scoped access</code>, (2) select <code>App folder</code>, and (3) name your app. 
 I named my app <code>SaveMyExperimentData</code>. When you are done, click <code>Create app</code>.</p>
 <p><img alt="Create a Dropbox app" src="../img/save-dropbox-Step1_app_console.jpg" /></p>
 <hr />
-<h2 id="step-2-get-the-dropbox-access-token">Step 2. Get the Dropbox access token</h2>
-<p>If your app is created successfully, you will see a screen like below. 
-Scroll down to find <code>Generate access token</code> and click the button to get the token.</p>
-<p><img alt="Get the access token" src="../img/save-dropbox-Step2_access_token.jpg" /></p>
+<h2 id="step-2-give-the-necessary-permisions-for-uploading-files">Step 2. Give the necessary permisions for uploading files</h2>
+<p>If your app is created successfully, you will see the tabs: <code>Settings</code>, <code>Permissions</code>, <code>Branding</code>, and <code>Analytics</code>. </p>
+<p>Click the <strong><code>Permissions</code></strong> tab. </p>
+<p>Go to <code>Files and folders</code> section and check the <code>files.metadata.write</code>, <code>files.content.write</code>, <code>files.content.read</code> boxes like below to allow file uploads.</p>
+<p><img alt="Give file write permissions" src="../img/save-dropbox-Step2_give_permissions.jpg" /></p>
+<hr />
+<h2 id="step-3-get-the-dropbox-access-token">Step 3. Get the Dropbox access token</h2>
+<p>Then click the <code>Settings</code> tab, and you will see a screen like below.</p>
+<ol>
+<li>Scroll down to find <code>Access token expiration</code> and set it to <strong>No expiration</strong>. If you don't change the expiration, this key will expire in 4 hours, and expiration, your experiment <strong>CANNOT</strong> upload files to Dropbox.</li>
+<li>Then, go to <code>Generate access token</code> and click the button to get the token. If you generate the key first, then you may have to repeat the whole step because permissions and expiration cannot be changed after the token has been generated.</li>
+</ol>
+<p><img alt="Get the access token" src="../img/save-dropbox-Step3_access_token.jpg" /></p>
 <p><strong><font color=red>WARNING:</font> Do NOT share this access token with anyone, 
 including sharing your code, etc.
 <font color=red>With this code, anyone can access or delete your Dropbox files and abuse your Dropbox account.</font>.</strong>
 So I suggest you two things when you finish your data collection. </p>
 <ol>
-<li><strong>Invalidate the access code</strong> by deleting the app (see the <a href="./#step-6-unlink-your-dropbox-app">Step 6</a> below). When you delete your app, saved files in your folder remains intact. </li>
+<li><strong>Invalidate the access code</strong> by deleting the app (see the <a href="./#step-8-unlink-your-dropbox-app">Step 8</a> below). When you delete your app, saved files in your folder remains intact. </li>
 <li><strong>Replace the access code with blank</strong> in your source code, as I did in this tutorial, so that you do not accidentally publish your access code. </li>
 </ol>
 <hr />
-<h2 id="step-3-add-the-save-function-to-the-experiment-html-script">Step 3. Add the save function to the experiment HTML script</h2>
+<h2 id="step-4-add-the-save-function-to-the-experiment-html-script">Step 4. Add the save function to the experiment HTML script</h2>
 <p>The Dropbox side work is done. Now, you need to add scripts to send the result file when an experiment session is done.</p>
 <p>The <code>experiment-with-display-element-save-dropbox.html</code> file in <a href="https://github.com/kywch/jsPsych-in-Qualtrics/blob/master/hello-world/experiment-with-display-element-save-dropbox.html">this GitHub repository</a> contains three additional changes from <code>experiment-with-display-element.html</code>. When you open <code>experiment-with-display-element-save-dropbox.html</code> in a browser, you should see the same "Hello world!". </p>
 <p><strong>In addtion, you will find new json and csv files in your Dropbox folder under <code>Apps/&lt;your-app-name&gt;</code>, 
@@ -416,7 +428,7 @@ The callback will trigger once all trials in the experiment have been run, so it
 </code></pre>
 
 <hr />
-<h2 id="step-4-add-participand-id-to-qualtrics">Step 4. Add Participand ID to Qualtrics</h2>
+<h2 id="step-5-add-participand-id-to-qualtrics">Step 5. Add Participand ID to Qualtrics</h2>
 <p>Let's log in to Qualtrics. The basics of embedding jsPsych experiment into Qualtrics is explained in the <a href="../hello-world/#finally-embedding-jspsych-in-qualtrics">Embedding Hello World!</a> page. </p>
 <p>However, if you want to save the experiment data elsewhere, you must have the Participant ID so that you can link Qualtrics data and the experiment file later.
 In Qualtrics, you can keep or assign the participant ID using <a href="https://www.qualtrics.com/support/survey-platform/survey-module/survey-flow/standard-elements/embedded-data/#CreatingAnEmbeddedDataElement">Embedded Data elements</a>.</p>
@@ -445,7 +457,7 @@ However, other services suggest different field name -- for example, <a href="ht
 <p>After these steps, you should see a screen like below.</p>
 <p><img alt="Add Participant ID to Qualtrics" src="../img/save-php-Step6_participant_id.jpg" /></p>
 <hr />
-<h2 id="step-5-use-the-save-function-from-qualtrics">Step 5. Use the save function from Qualtrics</h2>
+<h2 id="step-6-use-the-save-function-from-qualtrics">Step 6. Use the save function from Qualtrics</h2>
 <p>The <code>qualtrics-save-dropbox.js</code> file in <a href="https://github.com/kywch/jsPsych-in-Qualtrics/blob/master/hello-world/qualtrics-save-php.js">this GitHub repository</a> contains additional changes from <code>qualtrics.js</code> and <code>experiment-with-display-element-save-dropbox.html</code> and can be direclty copy-pasted into the Qualtrics Question JavaScript Editor.</p>
 <p>We start from <code>qualtrics.js</code>, which you can see from <a href="../hello-world/#second-transformation-qualtricsjs">the Hello World! tutorial</a>. 
 Let's look at these additional change.</p>
@@ -692,11 +704,11 @@ Qualtrics.SurveyEngine.addOnUnload(function () {
 </code></pre>
 
 <hr />
-<h2 id="step-6-download-the-data-you-already-have-them">Step 6. Download the data? You already have them!</h2>
+<h2 id="step-7-download-the-data-you-already-have-them">Step 7. Download the data? You already have them!</h2>
 <p>When an experimental session finishes, its file will instantly delivered to your Dropbox folder. </p>
 <p>Isn't it nice?</p>
 <hr />
-<h2 id="step-7-unlink-your-dropbox-app">Step 7. Unlink your Dropbox app</h2>
+<h2 id="step-8-unlink-your-dropbox-app">Step 8. Unlink your Dropbox app</h2>
 <p>As I mentioned in the <a href="#step-2-get-the-dropbox-access-token">Step 2</a>, 
 the Dropbox access token you have is dangerous because anyone with the code can
 access or delete your Dropbox files and abuse your Dropbox account.</p>
@@ -726,7 +738,7 @@ click your app, scroll down, and click the <code>Delete app</code> button.</p>
   <div role="contentinfo">
     <!-- Copyright etc -->
     
-      <p>Copyright &copy; 2020 <a href="https://kywch.github.io/" target="_blank">Kyoung Whan Choe</a>. </p>
+      <p>Copyright &copy; 2020-2021 <a href="https://kywch.github.io/" target="_blank">Kyoung Whan Choe</a>. </p>
     
   </div>
 
