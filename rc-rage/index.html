@@ -80,6 +80,8 @@
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../flanker/">Embedding Flanker Task</a>
                     </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../choose-and-solve/">Embedding Choose-And-Solve Task</a>
+                    </li>
                     <li class="toctree-l1"><a class="reference internal" href="../stop-it/">Embedding Stop Signal Task (STOP-IT)</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../audio-test/">Embedding Quick Audio Test</a>
@@ -125,7 +127,7 @@
 <p>This tutorial consists of two parts. (1) I will first explain how you can <a href="./#embedding-rc-rage-into-qualtrics">embed RC-RAGE in Qualtrics</a>. (2) I will then <a href="./#explaining-the-code">explain the experiment code</a>.</p>
 <hr />
 <h2 id="embedding-rc-rage-into-qualtrics">Embedding RC-RAGE into Qualtrics</h2>
-<h3 id="hosting-the-mood-induction-scripts-in-github">Hosting the Mood Induction scripts in GitHub</h3>
+<h3 id="hosting-the-rc-rage-scripts-in-github">Hosting the RC-RAGE scripts in GitHub</h3>
 <p>To use jsPsych in Qualtrics, the jsPsych javascript and CSS files need to be online and loadable from Qualtrics. Creating a GitHub repository for your experiment helps you do so in simple steps.</p>
 <ol>
 <li>Go to the <a href="https://github.com/kywch/RC-RAGE_jsPsych">RC-RAGE GitHub repository</a>.</li>
@@ -148,7 +150,7 @@
 <p>To continue, please create a new Qualtrics project. Then, create a new question and (1) change its format to <strong>Text/Graphic</strong>.</p>
 <p><img alt="Add JavaScript to a Qualtrics question" src="../img/hello-world-qualtrics-Step1_add_javascript_to_question.jpg" /></p>
 <hr />
-<h4 id="step-2-open-the-question-javascript-editor-and-copy-paste-the-whole-mood-induction-qualtricsjs">Step 2. Open the Question JavaScript editor and copy paste the whole <code>mood-induction-qualtrics.js</code></h4>
+<h4 id="step-2-open-the-question-javascript-editor-and-copy-paste-the-whole-rc-rage-qualtricsjs">Step 2. Open the Question JavaScript editor and copy paste the whole <code>rc-rage-qualtrics.js</code></h4>
 <p>Keep going in the above picture. (2) Click the gear to open the dropdown menu, and then (3) find and click <strong>Add JavaScript</strong>. </p>
 <p><img alt="Open the Question JavaScript editor" src="../img/hello-world-qualtrics-Step2_open_javascript_editor.jpg" /></p>
 <p>Then copy-paste the whole <a href="https://raw.githubusercontent.com/kywch/RC-RAGE_jsPsych/master/rc-rage-qualtrics.js"><code>rc-rage-qualtrics.js</code> (click to see the code)</a> into the editor. </p>
