@@ -9,7 +9,7 @@
   
   <link rel="canonical" href="https://kywch.github.io/jsPsych-in-Qualtrics/rc-rage/">
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Embedding RC-RAGE (agression task) - jsPsych in Qualtrics Tutorial Series</title>
+  <title>Embedding Reactive AGression Task - jsPsych in Qualtrics Tutorial Series</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../css/theme.css" />
@@ -18,7 +18,7 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Embedding RC-RAGE (agression task)";
+    var mkdocs_page_name = "Embedding Reactive AGression Task";
     var mkdocs_page_input_path = "rc-rage.md";
     var mkdocs_page_url = "/jsPsych-in-Qualtrics/rc-rage/";
   </script>
@@ -82,7 +82,7 @@
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../choose-and-solve/">Embedding Choose-And-Solve Task</a>
                     </li>
-                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Embedding RC-RAGE (agression task)</a>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Embedding Reactive AGression Task</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#embedding-rc-rage-into-qualtrics">Embedding RC-RAGE into Qualtrics</a>
         <ul>
@@ -170,7 +170,7 @@
         
       
     
-    <li>Embedding RC-RAGE (agression task)</li>
+    <li>Embedding Reactive AGression Task</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -556,7 +556,7 @@ function initExp() {
 
 <h4 id="changes-5-6-summarizing-and-saving-the-results-then-finishing-the-study">Changes 5-6: Summarizing and saving the results, then finishing the study</h4>
 <p>This script saves additional data (script order and spent time)) to Qualtrics Embedded Data to simplify the analysis.</p>
-<p>The <code>trial_data</code> is a csv-like string with space (' ') as the delimiter and semicolor (';') as the newline character. The columns are: trial, steal_timing, finish_code, click_cnt, extra_click, points, rt, time_remain. This string can be turned into the csv format by this python command.</p>
+<p>The <code>trial_data</code> is a csv-like string with space (' ') as the delimiter and semicolor (';') as the newline character. The columns are: trial, steal_timing, finish_code, click_cnt, extra_click, points, rt, time_remain. This string can be turned into the csv format by this python command. Please see <a href="https://colab.research.google.com/github/kywch/RC-RAGE_jsPsych/blob/master/read_data.ipynb">this google colab page</a> for a working example.</p>
 <pre><code class="python"># python code
 result_csv = result_string.strip().replace(';', '\n').replace(' ', ',')
 </code></pre>
