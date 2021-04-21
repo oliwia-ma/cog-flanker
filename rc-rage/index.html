@@ -9,7 +9,7 @@
   
   <link rel="canonical" href="https://kywch.github.io/jsPsych-in-Qualtrics/rc-rage/">
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Embedding Reactive AGression Task (RC-RAGE) into Qualtrics - jsPsych in Qualtrics Tutorial Series</title>
+  <title>Embedding RC-RAGE (agression task) - jsPsych in Qualtrics Tutorial Series</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../css/theme.css" />
@@ -18,7 +18,7 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Embedding Reactive AGression Task (RC-RAGE) into Qualtrics";
+    var mkdocs_page_name = "Embedding RC-RAGE (agression task)";
     var mkdocs_page_input_path = "rc-rage.md";
     var mkdocs_page_url = "/jsPsych-in-Qualtrics/rc-rage/";
   </script>
@@ -75,12 +75,68 @@
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Part 2. Case studies</span></p>
-                <ul>
+                <ul class="current">
                     <li class="toctree-l1"><a class="reference internal" href="../rt-task/">Embedding Reaction-Time Task</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../flanker/">Embedding Flanker Task</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../choose-and-solve/">Embedding Choose-And-Solve Task</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Embedding RC-RAGE (agression task)</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#embedding-rc-rage-into-qualtrics">Embedding RC-RAGE into Qualtrics</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#hosting-the-rc-rage-scripts-in-github">Hosting the RC-RAGE scripts in GitHub</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#embedding-the-task-to-qualtrics">Embedding the task to Qualtrics</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#step-1-create-a-new-qualtrics-project-and-then-a-new-question">Step 1. Create a new Qualtrics project and then a new question</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#step-2-open-the-question-javascript-editor-and-copy-paste-the-whole-rc-rage-qualtricsjs">Step 2. Open the Question JavaScript editor and copy paste the whole rc-rage-qualtrics.js</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#step-3-open-the-question-html-editor-and-copy-paste-the-below-html-code">Step 3. Open the Question HTML editor and copy paste the below html code</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#step-4-create-embedded-data-elements">Step 4. Create Embedded Data elements</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#step-5-publish-and-test">Step 5. Publish and test!</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#explaining-the-code">Explaining the code</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#a-working-demo-in-a-local-browser-rc-rage-demohtml">A working demo in a local browser: rc-rage-demo.html</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#step-1-define-and-load-required-resources">Step 1. Define and load required resources</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#step-2-add-display_stage-css-div-and-extra-scripts-for-qualtrics">Step 2: Add display_stage CSS, DIV, and extra scripts for Qualtrics</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#step-3-define-the-experiment-flow">Step 3: Define the experiment flow</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#step-4-show-the-aggregate-session-level-data">Step 4: Show the aggregate session-level data</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#step-5-run-the-experiment">Step 5: Run the experiment</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#qualtrics-transformation-rc-rage-qualtricsjs">Qualtrics transformation: rc-rage-qualtrics.js</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#change-1-hiding-the-next-button">Change 1: Hiding the Next button</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#change-2-defining-and-load-required-resources">Change 2: Defining and load required resources</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#change-3-appending-the-display_stage-div-using-jquery">Change 3: Appending the display_stage Div using jQuery</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#change-4-wrapping-jspsychinit-in-a-function">Change 4: Wrapping jsPsych.init() in a function</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#changes-5-6-summarizing-and-saving-the-results-then-finishing-the-study">Changes 5-6: Summarizing and saving the results, then finishing the study</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    </ul>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../stop-it/">Embedding Stop Signal Task (STOP-IT)</a>
                     </li>
@@ -109,8 +165,12 @@
     <li><a href="..">Docs</a> &raquo;</li>
     
       
+        
+          <li>Part 2. Case studies &raquo;</li>
+        
+      
     
-    <li>Embedding Reactive AGression Task (RC-RAGE) into Qualtrics</li>
+    <li>Embedding RC-RAGE (agression task)</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -122,7 +182,7 @@
             <div class="section">
               
                 <h1 id="embedding-reactive-agression-task-rc-rage-into-qualtrics">Embedding Reactive AGression Task (RC-RAGE) into Qualtrics</h1>
-<p>An improved costly-reactive-aggression paradigm, called <strong>Retaliate or Carry-on: Reactive AGression Task (RC-RAGE)</strong>, by Meidenbauer, Choe, &amp; Berman (2020) was implemented using jsPsych. You can first try the task by clicking <a href="https://kywch.github.io/RC-RAGE_jsPsych/rc-rage-demo.html">HERE</a>.</p>
+<p>An improved costly-reactive-aggression paradigm, called <strong>Retaliate or Carry-on: Reactive AGression Task (RC-RAGE)</strong>, by <a href="https://psyarxiv.com/kw3by/">Meidenbauer, Choe, Bakkour, &amp; Berman (2021)</a> was implemented using jsPsych. You can first try the task by clicking <a href="https://kywch.github.io/RC-RAGE_jsPsych/rc-rage-demo.html">HERE</a>.</p>
 <p>The RC-RAGE code is freely available at the <a href="https://github.com/kywch/RC-RAGE_jsPsych">RC-RAGE GitHub repository</a>. You can either directly use these files for your study or fork this repository to customize.</p>
 <p>This tutorial consists of two parts. (1) I will first explain how you can <a href="./#embedding-rc-rage-into-qualtrics">embed RC-RAGE in Qualtrics</a>. (2) I will then <a href="./#explaining-the-code">explain the experiment code</a>.</p>
 <hr />
@@ -494,8 +554,13 @@ function initExp() {
 });
 </code></pre>
 
-<h4 id="change-5-summarizing-and-saving-the-results-then-finishing-the-study">Change 5: Summarizing and saving the results, then finishing the study</h4>
+<h4 id="changes-5-6-summarizing-and-saving-the-results-then-finishing-the-study">Changes 5-6: Summarizing and saving the results, then finishing the study</h4>
 <p>This script saves additional data (script order and spent time)) to Qualtrics Embedded Data to simplify the analysis.</p>
+<p>The <code>trial_data</code> is a csv-like string with space (' ') as the delimiter and semicolor (';') as the newline character. The columns are: trial, steal_timing, finish_code, click_cnt, extra_click, points, rt, time_remain. This string can be turned into the csv format by this python command.</p>
+<pre><code class="python"># python code
+result_csv = result_string.strip().replace(';', '\n').replace(' ', ',')
+</code></pre>
+
 <p>When the jsPsych ends, <code>display_stage</code> and <code>display_stage_background</code> should be removed. </p>
 <p>After saving, the script executes the <code>clickNextButton</code> to simulate clicking the Next button and proceed to the next question.</p>
 <pre><code class="js">on_finish: function () {
@@ -540,7 +605,36 @@ function initExp() {
     // the simple trial-level data
     // NOTE that detailed trial-level data are not saved here, but it can be done.                
     Qualtrics.SurveyEngine.setEmbeddedData(&quot;planned_trial&quot;, trial_seq);
-    Qualtrics.SurveyEngine.setEmbeddedData(&quot;wasted_click_history&quot;, wasted_click_history.toString().replace(/,/g, ';'));                                
+    Qualtrics.SurveyEngine.setEmbeddedData(&quot;wasted_click_history&quot;, wasted_click_history.toString().replace(/,/g, ';'));
+
+    /* Change 6: Saving the trial-level data and finishing up */
+    // save the data
+    Qualtrics.SurveyEngine.setEmbeddedData(&quot;trial_data&quot;, result_string);
+
+    function sleep(time) {
+        return new Promise((resolve) =&gt; setTimeout(resolve, time));
+    }
+
+    sleep(500).then(() =&gt; {
+        saved_string = Qualtrics.SurveyEngine.getEmbeddedData(&quot;trial_data&quot;);
+        //console.log(saved_string);
+        if (result_string !== saved_string) {
+            console.log('There was a problem with saving data. Trying again...')
+            // try to save it once more, but no guarantee
+            Qualtrics.SurveyEngine.setEmbeddedData(&quot;trial_data&quot;, result_string);
+        } else {
+            console.log('Save was successful.')
+        }
+    });
+
+    sleep(500).then(() =&gt; {
+        // clear the stage
+        jQuery('#display_stage').remove();
+        jQuery('#display_stage_background').remove();
+
+        // simulate click on Qualtrics &quot;next&quot; button, making use of the Qualtrics JS API
+        qthis.clickNextButton();
+    });                                    
 
     // clear the stage
     jQuery('#display_stage').remove();
@@ -555,6 +649,15 @@ function initExp() {
             </div>
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../stop-it/" class="btn btn-neutral float-right" title="Embedding Stop Signal Task (STOP-IT)">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../choose-and-solve/" class="btn btn-neutral" title="Embedding Choose-And-Solve Task"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
@@ -580,6 +683,10 @@ function initExp() {
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
+        <span><a href="../choose-and-solve/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../stop-it/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
