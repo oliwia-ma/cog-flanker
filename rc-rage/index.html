@@ -276,6 +276,7 @@
 <li>Click <strong>Add a New Field</strong> and type <strong>kill_cnt</strong></li>
 <li>Click <strong>Add a New Field</strong> and type <strong>planned_trial</strong></li>
 <li>Click <strong>Add a New Field</strong> and type <strong>wasted_click_history</strong></li>
+<li>Click <strong>Add a New Field</strong> and type <strong>trial_data</strong></li>
 <li>Click <strong>Move</strong> of the new blocks you created (<code>Set Embedded Data</code> and <code>Then Branch If</code>) and move these blocks the top of Survey Flow</li>
 </ol>
 <hr />
@@ -636,12 +637,6 @@ result_csv = result_string.strip().replace(';', '\n').replace(' ', ',')
         qthis.clickNextButton();
     });                                    
 
-    // clear the stage
-    jQuery('#display_stage').remove();
-    jQuery('#display_stage_background').remove();
-
-    // simulate click on Qualtrics &quot;next&quot; button, making use of the Qualtrics JS API
-    qthis.clickNextButton();
 }
 });
 </code></pre>
