@@ -67,17 +67,15 @@
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../hello-world/">Embedding Hello World!</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../save-php/">Saving Data with PHP</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../rt-task/">Embedding Reaction-Time Task</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../save-dropbox/">Saving Data to your Dropbox</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../save-php/">Saving Data with PHP</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../participants/">Recruiting Participants</a>
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Part 2. Case studies</span></p>
                 <ul class="current">
-                    <li class="toctree-l1"><a class="reference internal" href="../rt-task/">Embedding Reaction-Time Task</a>
-                    </li>
                     <li class="toctree-l1 current"><a class="reference internal current" href="./">Embedding Flanker Task</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#the-start-demo-flanker-taskhtml">The start: demo-flanker-task.html</a>
@@ -216,12 +214,14 @@
             <div class="section">
               
                 <h1 id="embedding-the-jspsych-flanker-task-into-qualtrics">Embedding the jsPsych Flanker Task into Qualtrics</h1>
-<p>Let's start from the <code>demo-flanker.html</code> in <a href="https://github.com/jspsych/jsPsych/blob/master/examples/demo-flanker.html">the jsPsych repository</a> and embed it to qualtrics. You can first try the task by clicking <a href="https://kywch.github.io/jsPsych/examples/demo-flanker.html">HERE</a>.</p>
-<p>For details of <code>demo-flanker.html</code>, please read <a href="https://github.com/kywch/jsPsych-in-Qualtrics/tree/master/flanker">the separate tutorial in this GitHub repository</a>.</p>
+<p><font color=red><strong>Please NOTE!! This tutorial series is based on version <code>6.x</code> of jsPsych. Due to extensive changes in jsPsych 7.x and above, many things in this tutorial may not work with jsPsych v7.x and above. So, I instead use the <code>6.1.0 version</code> below, <a href="https://github.com/kywch/jsPsych">which I forked previously</a>. Or, you can get <a href="https://github.com/jspsych/jsPsych/releases/download/v6.3.1/jspsych-6.3.1.zip">jsPsych v6.3.1 (the last jsPsych 6.x release) from here</a>.</strong></font></p>
+<p>Here, I used <code>v6.1.0</code>, which is not much different from <code>v6.3.1</code>**</font></p>
+<p>Let's start from the <code>demo-flanker.html</code> in <a href="https://github.com/jspsych/jsPsych/blob/master/examples/demo-flanker.html">the jsPsych repository</a> and embed it to qualtrics. The current demo file was revised to incorporate jsPsych v7, so it's different from what I used to create this tutorial. For details of <code>demo-flanker.html</code> in jsPsych v6.x, please read <a href="https://github.com/kywch/jsPsych-in-Qualtrics/tree/master/flanker">the separate tutorial in this GitHub repository</a>.</p>
+<p>You can first try the task by clicking <a href="https://kywch.github.io/jsPsych/examples/demo-flanker.html">HERE</a>.</p>
 <hr />
 <h2 id="the-start-demo-flanker-taskhtml">The start: <code>demo-flanker-task.html</code></h2>
-<p>The experiment code, <code>demo-flanker.html</code> is included in <a href="https://github.com/jspsych/jsPsych/blob/master/examples/demo-flanker.html">the examples folder in the jsPsych repository</a>. 
-Let's make the code work in a separate folder like <a href="https://www.jspsych.org/tutorials/hello-world/#step-2-create-a-folder-to-store-your-experiment-files">the hello-world example</a>.</p>
+<p>The experiment code, <code>demo-flanker.html</code> is included in <a href="https://github.com/kywch/jsPsych-in-Qualtrics/blob/master/flanker/demo-flanker.html">the <code>flanker</code> folder in this tutorial repository</a>. 
+Let's make the code work in a separate folder like <a href="https://www.jspsych.org/6.3/tutorials/hello-world/#step-2-create-a-folder-to-store-your-experiment-files">the hello-world example</a>.</p>
 <p>To do so, you need to change the url of jsPsych scripts, stylesheet, and stimuli of the experiment code. In this tutorial, we will change those twice to make the flanker task (1) run on a new folder and (2) use the GitHub-hosted resources.</p>
 <p>First, let's make it run locally. To do so, The jsPsych library, plugins, and stylesheet come from the local folder. As you can see, the <code>demo-flanker.html</code> in this repository looks at the local <code>jspsych-6.1.0</code> folder for these files.</p>
 <pre><code class="html">&lt;script src=&quot;jspsych-6.1.0/jspsych.js&quot;&gt;&lt;/script&gt;
@@ -231,10 +231,10 @@ Let's make the code work in a separate folder like <a href="https://www.jspsych.
 </code></pre>
 
 <p>The experiment also needs stimuli images. So, you need to create a folder called <code>img</code> in the experiment folder and copy 
-<a href="https://raw.githubusercontent.com/jspsych/jsPsych/master/examples/img/con1.png">con1.png</a>, 
-<a href="https://raw.githubusercontent.com/jspsych/jsPsych/master/examples/img/con2.png">con2.png</a>,
-<a href="https://raw.githubusercontent.com/jspsych/jsPsych/master/examples/img/inc1.png">inc1.png</a>,
-and <a href="https://raw.githubusercontent.com/jspsych/jsPsych/master/examples/img/inc2.png">inc2.png</a> into the <code>img</code> folder.</p>
+<a href="https://raw.githubusercontent.com/kywch/jsPsych/master/examples/img/con1.png">con1.png</a>, 
+<a href="https://raw.githubusercontent.com/kywch/jsPsych/master/examples/img/con2.png">con2.png</a>,
+<a href="https://raw.githubusercontent.com/kywch/jsPsych/master/examples/img/inc1.png">inc1.png</a>,
+and <a href="https://raw.githubusercontent.com/kywch/jsPsych/master/examples/img/inc2.png">inc2.png</a> into the <code>img</code> folder.</p>
 <p>Your folder should look like this (and imagine the html file has the name <code>demo-flanker.html</code>).</p>
 <p><img alt="Simple RT-task folder" src="../img/rt-task-start_RT_task_folder.jpg" /></p>
 <hr />
@@ -242,9 +242,7 @@ and <a href="https://raw.githubusercontent.com/jspsych/jsPsych/master/examples/i
 <p>To use jsPsych in Qualtrics, the jsPsych javascript and CSS files need to be online and loadable from Qualtrics. 
 You can make your files online using GitHub Pages, as explained in the <a href="../github-pages/">Hosting jsPsych</a> or the <a href="../rt-task/#hosting-this-task-in-github">Hosting RT Task</a>. </p>
 <p><strong>But you can do so WITHOUT setting up your own GitHub Pages.</strong></p>
-<p>If you see a GitHub file that you want to embed in your experiment, like <a href="https://github.com/jspsych/jsPsych/blob/master/jspsych.js">jspsych.js in jsPsych GitHub</a>,
-you can use <a href="https://www.jsdelivr.com/?docs=gh">jSDelivr</a> to fetch the file like <code>https://cdn.jsdelivr.net/gh/&lt;github-username&gt;/&lt;repository-name&gt;/&lt;file-name&gt;</code>: 
-<a href="https://cdn.jsdelivr.net/gh/jspsych/jsPsych/jspsych.js">https://cdn.jsdelivr.net/gh/jspsych/jsPsych/jspsych.js</a>.</p>
+<p>If you see a GitHub file that you want to embed in your experiment, you can use <a href="https://www.jsdelivr.com/?docs=gh">jSDelivr</a> to fetch the file like <code>https://cdn.jsdelivr.net/gh/&lt;github-username&gt;/&lt;repository-name&gt;/&lt;file-name&gt;</code>.</p>
 <p><font color=red><b>WARNING: If you are developing your experiment and making frequent changes, 
 jsDelivr is NOT your best option because it takes up to 24 hours to serve the modified files.</b></font> 
 Read <a href="https://www.freecodecamp.org/news/how-to-use-jsdelivr-e64e5590f66e/">How to use jsDelivr</a> to learn more about jsDelivr and Content Delivery Network (CDN) in general.</p>
@@ -424,7 +422,7 @@ The <code>find</code> function really helps in doing so.</p>
 <h3 id="step-5-demo-flanker-transformedhtml-import-flanker_mainjs">Step 5. <code>demo-flanker-transformed.html</code>: Import <code>flanker_main.js</code></h3>
 <p>Cutting the experiment-related code makes the <code>demo-flanker-transformed.html</code> file much shorter. </p>
 <p>Let's also use <a href="./#using-this-tutorials-github-files-for-the-flanker-task">the GitHub-hosted JS and CSS files (above)</a>. 
-In addition, you also need to load <code>flanker_main.js</code> by using a <code>&lt;script&gt;</code> tag like the other jspsych plugin files (see <a href="https://www.jspsych.org/tutorials/hello-world/#step-6-use-the-jspsych-html-keyboard-response-plugin-to-print-a-message">the original jsPsych tutorial</a>).</p>
+In addition, you also need to load <code>flanker_main.js</code> by using a <code>&lt;script&gt;</code> tag like the other jspsych plugin files (see <a href="https://www.jspsych.org/6.3/tutorials/hello-world/#step-6-use-the-jspsych-html-keyboard-response-plugin-to-print-a-message">the original jsPsych v6.3 tutorial</a>).</p>
 <p>You can use your own repository by creating the jsDelivr link by following <a href="https://www.jsdelivr.com/?docs=gh">this guide</a>.</p>
 <h4 id="change-1-using-the-github-hosted-js-and-css-files">CHANGE 1: Using the GitHub-hosted JS and CSS files</h4>
 <pre><code class="html">&lt;!-- CHANGE 1: Using the GitHub-hosted files --&gt;
@@ -588,7 +586,7 @@ jQuery(&quot;&lt;div id = 'display_stage'&gt;&lt;/div&gt;&quot;).appendTo('body'
 <h3 id="change-4-wrapping-jspsychinit-in-a-function">Change 4: Wrapping jsPsych.init() in a function</h3>
 <p>The main experiment codes are wrapped in the <code>initExp</code> function to make sure it runs after all the necessary library and plugin files are loaded (as defined in the <code>loadScript</code> function above).</p>
 <h3 id="change-5-summarizing-and-save-the-results-to-qualtrics">Change 5: Summarizing and save the results to Qualtrics</h3>
-<p><a href="https://www.jspsych.org/tutorials/rt-task/#part-11-data-aggregation">The jsPsych tutorial</a> shows you how you can process and summarize the experiment results online. <strong>Wouldn't it be great if your experiment results are directly included in your Qualtrics data?</strong> </p>
+<p><a href="https://www.jspsych.org/6.3/tutorials/rt-task/#part-11-data-aggregation">The jsPsych v6.3 tutorial</a> shows you how you can process and summarize the experiment results online. <strong>Wouldn't it be great if your experiment results are directly included in your Qualtrics data?</strong> </p>
 <p>Well, you can actually summarize the results online and save those results in <a href="https://www.qualtrics.com/support/survey-platform/survey-module/survey-flow/standard-elements/embedded-data/">Qualtrics' Embedded Data</a> using the <a href="https://s.qualtrics.com/WRAPI/QuestionAPI/classes/Qualtrics%20JavaScript%20Question%20API.html#method_setEmbeddedData">setEmbeddedData</a> function.</p>
 <p><code>demo-flanker-qualtrics.js</code> does so when the jsPsych experiment finishes by running the below code from <a href="https://github.com/kywch/jsPsych-in-Qualtrics/tree/master/flanker#part-5-presenting-feedback-to-the-participants"><code>debrief_block</code></a>.</p>
 <pre><code class="js">jsPsych.init({
@@ -634,8 +632,7 @@ jQuery(&quot;&lt;div id = 'display_stage'&gt;&lt;/div&gt;&quot;).appendTo('body'
 <h2 id="finally-embedding-jspsych-in-qualtrics">Finally, embedding jsPsych in Qualtrics</h2>
 <p>Let's log in to Qualtrics and take a look at each step.</p>
 <h3 id="step-1-create-a-new-qualtrics-project-and-then-a-new-question">Step 1. Create a new Qualtrics project and then a new question</h3>
-<p>This tutorial assumes that readers are much more familiar with Qualtrics. For Qualtrics tutorial, there are other excellent tutorials available like <a href="https://www.unthsc.edu/center-for-innovative-learning/qualtrics-user-guide/">this Qualtrics User Guide</a>.</p>
-<p>To continue, please create a new Qualtrics project. Then, create a new question and (1) change its format to <strong>Text/Graphic</strong>.</p>
+<p>Create a new Qualtrics project. Then, create a new question and (1) change its format to <strong>Text/Graphic</strong>.</p>
 <p><img alt="Add JavaScript to a Qualtrics question" src="../img/hello-world-qualtrics-Step1_add_javascript_to_question.jpg" /></p>
 <h3 id="step-2-open-the-question-javascript-editor-and-copy-paste-the-whole-demo-simple-rt-task-qualtricsjs">Step 2. Open the Question JavaScript editor and copy paste the whole <code>demo-simple-rt-task-qualtrics.js</code></h3>
 <p>Keep going in the above picture. (2) Click the gear to open the dropdown menu, and then (3) find and click <strong>Add JavaScript</strong>.</p>
@@ -719,11 +716,7 @@ You can do so by showing the <code>accuracy</code>, <code>congruent_rt</code>, a
 <p>Publish the survey by following <a href="https://www.qualtrics.com/support/survey-platform/survey-module/survey-publishing-versions/#PublishingNew">this Qualtrics tutorial</a>. Then, an anonymous Qualtrics link is generated. If you click this link, you should be able to see the same reaction time task running in Qualtrics. For example, try <a href="https://ssd.az1.qualtrics.com/jfe/form/SV_enXPx66m9iOM6Sp">this Qualtrics link</a>.</p>
 <hr />
 <h2 id="do-you-also-want-to-save-the-trial-by-trial-data">Do you also want to save the trial-by-trial data?</h2>
-<p>I describe two ways for saving the experiment files in these tutorials. </p>
-<ol>
-<li><a href="../save-php/">Saving data to a web server using PHP</a></li>
-<li><a href="../save-dropbox/">Saving data to your Dropbox folder</a></li>
-</ol>
+<p>Then, you need a server that can receive your data. See the tutorial <a href="../save-php/">Saving data to a web server using PHP</a>.</p>
               
             </div>
           </div>
@@ -734,7 +727,7 @@ You can do so by showing the <code>accuracy</code>, <code>congruent_rt</code>, a
         <a href="../choose-and-solve/" class="btn btn-neutral float-right" title="Embedding Choose-And-Solve Task">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../rt-task/" class="btn btn-neutral" title="Embedding Reaction-Time Task"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../participants/" class="btn btn-neutral" title="Recruiting Participants"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -762,7 +755,7 @@ You can do so by showing the <code>accuracy</code>, <code>congruent_rt</code>, a
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../rt-task/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../participants/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
         <span style="margin-left: 15px"><a href="../choose-and-solve/" style="color: #fcfcfc">Next &raquo;</a></span>

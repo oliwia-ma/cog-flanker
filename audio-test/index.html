@@ -67,17 +67,15 @@
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../hello-world/">Embedding Hello World!</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../save-php/">Saving Data with PHP</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../rt-task/">Embedding Reaction-Time Task</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../save-dropbox/">Saving Data to your Dropbox</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../save-php/">Saving Data with PHP</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../participants/">Recruiting Participants</a>
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Part 2. Case studies</span></p>
                 <ul class="current">
-                    <li class="toctree-l1"><a class="reference internal" href="../rt-task/">Embedding Reaction-Time Task</a>
-                    </li>
                     <li class="toctree-l1"><a class="reference internal" href="../flanker/">Embedding Flanker Task</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../choose-and-solve/">Embedding Choose-And-Solve Task</a>
@@ -181,7 +179,7 @@
               
                 <h1 id="embedding-a-quick-audio-test-into-qualtrics">Embedding a Quick Audio Test into Qualtrics</h1>
 <p>Before running an auditory task (like mood induction or dual n-back), you should make sure participants can listen to sound. To do so, I made a quick audio test using jsPsych. You can first try the test by clicking <a href="https://kywch.github.io/Mood-Induction_jsPsych/audio-test-demo.html">HERE</a>.</p>
-<p>I put the working codes into the <a href="https://github.com/kywch/Mood-Induction_jsPsych">Mood Induction repository</a>. You can either directly use these files or fork this repository to customize.</p>
+<p>I uploaded the working codes on the <a href="https://github.com/kywch/Mood-Induction_jsPsych">Mood Induction repository</a>. You can either directly use these files or fork this repository to customize.</p>
 <p>This tutorial consists of two parts. (1) I will first explain how you can <a href="./#embedding-the-quick-audio-test-into-qualtrics">embed the Audio Test in Qualtrics</a>. (2) I will then <a href="./#explaining-the-code">explain the experiment code</a>. </p>
 <hr />
 <h2 id="embedding-the-quick-audio-test-into-qualtrics">Embedding the Quick Audio Test into Qualtrics</h2>
@@ -204,8 +202,7 @@
 <h3 id="embedding-the-task-to-qualtrics">Embedding the task to Qualtrics</h3>
 <p>Let's log in to Qualtrics and take a look at each step.</p>
 <h4 id="step-1-create-a-new-qualtrics-project-and-then-a-new-question">Step 1. Create a new Qualtrics project and then a new question</h4>
-<p>This tutorial assumes that readers are much more familiar with Qualtrics. For Qualtrics tutorial, there are other excellent tutorials available like <a href="https://www.unthsc.edu/center-for-innovative-learning/qualtrics-user-guide/">this Qualtrics User Guide</a>.</p>
-<p>To continue, please create a new Qualtrics project. Then, create a new question and (1) change its format to <strong>Text/Graphic</strong>.</p>
+<p>First, create a new Qualtrics project. Then, create a new question and (1) change its format to <strong>Text/Graphic</strong>.</p>
 <p><img alt="Add JavaScript to a Qualtrics question" src="../img/hello-world-qualtrics-Step1_add_javascript_to_question.jpg" /></p>
 <hr />
 <h4 id="step-2-open-the-question-javascript-editor-and-copy-paste-the-whole-audio-test-qualtricsjs">Step 2. Open the Question JavaScript editor and copy paste the whole <code>audio-test-qualtrics.js</code></h4>

@@ -9,7 +9,7 @@
   
   <link rel="canonical" href="https://kywch.github.io/jsPsych-in-Qualtrics/save-dropbox/">
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Saving Data to your Dropbox - jsPsych in Qualtrics Tutorial Series</title>
+  <title>Saving jsPsych data to your Dropbox folder - jsPsych in Qualtrics Tutorial Series</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../css/theme.css" />
@@ -18,7 +18,7 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Saving Data to your Dropbox";
+    var mkdocs_page_name = "Saving jsPsych data to your Dropbox folder";
     var mkdocs_page_input_path = "save-dropbox.md";
     var mkdocs_page_url = "/jsPsych-in-Qualtrics/save-dropbox/";
   </script>
@@ -62,62 +62,20 @@
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Part 1. The Basics</span></p>
-                <ul class="current">
+                <ul>
                     <li class="toctree-l1"><a class="reference internal" href="../github-pages/">Hosting jsPsych</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../hello-world/">Embedding Hello World!</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../save-php/">Saving Data with PHP</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../rt-task/">Embedding Reaction-Time Task</a>
                     </li>
-                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Saving Data to your Dropbox</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#step-0-get-a-dropbox-account">Step 0. Get a Dropbox account</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#step-1-create-a-dropbox-app-for-saving-files">Step 1. Create a Dropbox app for saving files</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#step-2-give-the-necessary-permisions-for-uploading-files">Step 2. Give the necessary permisions for uploading files</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#step-3-get-the-dropbox-access-token">Step 3. Get the Dropbox access token</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#step-4-add-the-save-function-to-the-experiment-html-script">Step 4. Add the save function to the experiment HTML script</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#change-4-defining-necessary-variables-for-saving-the-results">Change 4: Defining necessary variables for saving the results</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#change-5-defining-save-functions-using-dropbox-api">Change 5. Defining save functions using Dropbox API</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#change-6-sending-the-results-file-upon-completion">Change 6: Sending the results file upon completion</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#putting-it-all-together">Putting it all together</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#step-5-add-participand-id-to-qualtrics">Step 5. Add Participand ID to Qualtrics</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#step-6-use-the-save-function-from-qualtrics">Step 6. Use the save function from Qualtrics</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#change-6-loading-the-dropbox-api">Change 6: Loading the Dropbox API</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#change-7-adding-necessary-variables-and-functions-for-saving-the-results">Change 7: Adding necessary variables and functions for saving the results</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#change-8-calling-the-save-function-choose-one">Change 8: Calling the save function -- CHOOSE ONE!</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#putting-it-all-together_1">Putting it all together</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#step-7-download-the-data-you-already-have-them">Step 7. Download the data? You already have them!</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#step-8-unlink-your-dropbox-app">Step 8. Unlink your Dropbox app</a>
-    </li>
-    </ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../save-php/">Saving Data with PHP</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../participants/">Recruiting Participants</a>
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Part 2. Case studies</span></p>
                 <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../rt-task/">Embedding Reaction-Time Task</a>
-                    </li>
                     <li class="toctree-l1"><a class="reference internal" href="../flanker/">Embedding Flanker Task</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../choose-and-solve/">Embedding Choose-And-Solve Task</a>
@@ -151,12 +109,8 @@
     <li><a href="..">Docs</a> &raquo;</li>
     
       
-        
-          <li>Part 1. The Basics &raquo;</li>
-        
-      
     
-    <li>Saving Data to your Dropbox</li>
+    <li>Saving jsPsych data to your Dropbox folder</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -727,15 +681,6 @@ click your app, scroll down, and click the <code>Delete app</code> button.</p>
           </div>
           <footer>
   
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../participants/" class="btn btn-neutral float-right" title="Recruiting Participants">Next <span class="icon icon-circle-arrow-right"></span></a>
-      
-      
-        <a href="../save-php/" class="btn btn-neutral" title="Saving Data with PHP"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-      
-    </div>
-  
 
   <hr/>
 
@@ -760,10 +705,6 @@ click your app, scroll down, and click the <code>Delete app</code> button.</p>
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../save-php/" style="color: #fcfcfc;">&laquo; Previous</a></span>
-      
-      
-        <span style="margin-left: 15px"><a href="../participants/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

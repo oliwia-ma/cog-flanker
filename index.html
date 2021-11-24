@@ -69,17 +69,15 @@
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="hello-world/">Embedding Hello World!</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="save-php/">Saving Data with PHP</a>
+                    <li class="toctree-l1"><a class="reference internal" href="rt-task/">Embedding Reaction-Time Task</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="save-dropbox/">Saving Data to your Dropbox</a>
+                    <li class="toctree-l1"><a class="reference internal" href="save-php/">Saving Data with PHP</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="participants/">Recruiting Participants</a>
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Part 2. Case studies</span></p>
                 <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="rt-task/">Embedding Reaction-Time Task</a>
-                    </li>
                     <li class="toctree-l1"><a class="reference internal" href="flanker/">Embedding Flanker Task</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="choose-and-solve/">Embedding Choose-And-Solve Task</a>
@@ -126,46 +124,44 @@
             <div class="section">
               
                 <h1 id="welcome-to-the-jspsych-in-qualtrics-tutorial-series">Welcome to the jsPsych in Qualtrics Tutorial Series</h1>
-<p>Hello, I am <a href="https://kywch.github.io">Kyoung Whan</a> and have been actively using jsPsych and Qualtrics in my research. 
-For example, I developed the <a href="https://kywch.github.io/CAST_jsPsych/">Choose-And-Solve Task</a> with jsPsych and 
-published a paper, titled <strong>"Calculated avoidance: Math anxiety predicts math avoidance in effort-based decision-making"</strong>
+<p><font color=red><strong>WARNING!! This tutorial series is based on version <code>6.x</code> of jsPsych. Due to extensive changes in jsPsych 7.x and above, many things in this tutorial won't work. However, you can still download <a href="https://github.com/jspsych/jsPsych/releases/download/v6.3.1/jspsych-6.3.1.zip">jsPsych v6.3.1 (the last jsPsych 6.x release)</a> and use it for your projects.</strong></font></p>
+<p>Hello, I am <a href="https://kywch.github.io">Kyoung Whan</a> and have used jsPsych within Qualtrics extensively in my research. 
+For example, I developed the <a href="https://kywch.github.io/CAST_jsPsych/">Choose-And-Solve Task</a> with jsPsych, 
+ran the task using Qualtrics with math attitude surveys, and published a paper, 
+titled <strong>"Calculated avoidance: Math anxiety predicts math avoidance in effort-based decision-making"</strong> 
 <a href="https://advances.sciencemag.org/content/5/11/eaay1062">(Choe et al., 2019, <em>Science Advances</em>)</a>.</p>
-<p>I am putting together this tutorial series to provide an easy-to-follow guide for using jsPsych with Qualtrics. 
-I also aim to compile many working examples so that you can easily embed cognitive tasks into your study. 
-So, if you have suggestions, <strong>please shoot me an email to  <code>choe_DOT_kyoung</code> at <code>gmail_DOT_com</code></strong>, so that I can priotize the tasks.</p>
+<p>The purpose of this tutorial series is to provide an easy-to-follow guide to Qualtrics users (e.g., many social and psychological science researchers) on embedding jsPsych-based behavioral experiments into Qualtrics so that they could study interesting individual differences, correlating questionnaires vs. behavioral/cognitive measures. </p>
 <p>This tutorial assumes that readers are familiar with Qualtrics and have a basic understanding of HTML, CSS, JavaScript, and GitHub.
 For the beginners, I try to find and link good external resources (like below), so <strong>please do not give up and give it a try</strong>.</p>
 <p>If you are looking for Qualtrics tutorials, there are other excellent tutorials available, as well as Qualtrics' official support page. For example,</p>
 <ul>
 <li><a href="https://csulb.libguides.com/qualtrics/">CSULB Qualtrics Guide</a></li>
-<li><a href="https://www.unthsc.edu/center-for-innovative-learning/qualtrics-user-guide/">UNTHSC Qualtrics User Guide</a></li>
 </ul>
-<p>If you are looking for jsPsych tutorial, the best place to start is <a href="https://www.jspsych.org/tutorials/hello-world/">the jsPsych Hello World! tutorial</a>. You should also look at <a href="https://www.youtube.com/playlist?list=PLnfo1lBY1P2Mf_o6rV5wiqqn92Mw3UTGh">the YouTube tutorial from Josh de Leeuw</a>.</p>
+<p>If you are looking for jsPsych v6.x tutorial, the best place to start is <a href="https://www.jspsych.org/6.3/tutorials/hello-world/">the jsPsych v6.3 Hello World! tutorial</a>. Also please check out these resources:</p>
+<ul>
+<li><a href="https://www.youtube.com/playlist?list=PLnfo1lBY1P2Mf_o6rV5wiqqn92Mw3UTGh">The YouTube tutorial from Josh de Leeuw</a></li>
+<li><a href="https://kennysmithed.github.io/oels2021/"><em>Online Experiments for Language Scientists</em> by Kenny Smith and Alisdair Tullo</a></li>
+</ul>
 <h2>jsPsych in Qualtrics Tutorial Series</h2>
 
 <p>If you have suggestions, please shoot me an email to  <code>choe_DOT_kyoung_AT_gmail_DOT_com</code>. Thanks!</p>
+<p>Unfortunately, <font color=red><strong>this tutorial series is no longer actively maintained</strong></font> (last update, 11/25/2021), as I moved to the industry. Still, I hope this helps fellow researchers.</p>
 <p><strong>Part 1. The Basics: Launching an online study and saving the data</strong></p>
 <ul>
 <li><a href="github-pages/">Making jsPsych files loadable in Qualtrics</a></li>
 <li><a href="hello-world/">The famous Hello World! example</a></li>
+<li><a href="rt-task/">Reaction Time Task (from the jsPsych tutorial)</a></li>
 <li><a href="save-php/">Saving jsPsych data to a server using PHP</a></li>
-<li><a href="save-dropbox/">Saving jsPsych data to your Dropbox</a></li>
 <li><a href="participants/">Recruiting participants for your study</a></li>
 </ul>
-<p><strong>Part 2. Case studies: Embedding existing jsPsych experiments into my Qualtrics</strong></p>
+<p><strong>Part 2. Case studies: Embedding existing jsPsych experiments into Qualtrics</strong></p>
 <ul>
-<li><a href="rt-task/">Reaction Time Task (from the jsPsych tutorial)</a></li>
 <li><a href="flanker/">Flanker Task (from the jsPsych demo)</a></li>
 <li><a href="choose-and-solve/">Choose-And-Solve Task (CAST; Choe et al., 2019)</a></li>
 <li><a href="rc-rage/">Retaliate or Carry-on: Reactive AGgression Experiment (RC-RAGE; Meidenbauer et al., 2021)</a></li>
 <li><a href="stop-it/">Stop Signal Task (STOP-IT; Verbruggen et al., 2019)</a></li>
 <li><a href="audio-test/">Quick Audio Test (recommeded before any auditory study)</a></li>
 <li><a href="mood-induction/">Mood Induction (Mayer et al. 1995; Marzillier &amp; Davey 2005)</a></li>
-<li>N-Back Task (forthcoming)</li>
-<li>Backward Digit Span Task (forthcoming)</li>
-<li>Dichotic Listening Task (forthcoming)</li>
-<li>Dual N-Back Task (forthcoming)</li>
-<li>Pairwise Image Rating Task (forthcoming)</li>
 </ul>
               
             </div>
@@ -222,5 +218,5 @@ For the beginners, I try to find and link good external resources (like below), 
 
 <!--
 MkDocs version : 1.1
-Build Date UTC : 2021-06-13 00:28:02
+Build Date UTC : 2021-11-24 08:07:34
 -->

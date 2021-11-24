@@ -67,6 +67,8 @@
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../hello-world/">Embedding Hello World!</a>
                     </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../rt-task/">Embedding Reaction-Time Task</a>
+                    </li>
                     <li class="toctree-l1 current"><a class="reference internal current" href="./">Saving Data with PHP</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#step-0-get-access-to-a-web-server">Step 0. Get access to a web server</a>
@@ -107,15 +109,11 @@
     </li>
     </ul>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../save-dropbox/">Saving Data to your Dropbox</a>
-                    </li>
                     <li class="toctree-l1"><a class="reference internal" href="../participants/">Recruiting Participants</a>
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Part 2. Case studies</span></p>
                 <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../rt-task/">Embedding Reaction-Time Task</a>
-                    </li>
                     <li class="toctree-l1"><a class="reference internal" href="../flanker/">Embedding Flanker Task</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../choose-and-solve/">Embedding Choose-And-Solve Task</a>
@@ -175,7 +173,6 @@ If you are not familiar with web servers and PHP, please please ask your IT prof
 <strong>They almost always can HELP you!</strong> Also look for resources like below. </p>
 <ul>
 <li><a href="https://cse.unl.edu/faq-section/web-related">UNL.edu: Prerequisites for hosting web content on your account/setting up your first PHP page</a></li>
-<li><a href="https://ist.njit.edu/sites/ist.njit.edu/files/createwebpage_0.pdf">NJIT.edu: Step by step instructions for beginners for creating a basic Web Page</a></li>
 </ul>
 <hr />
 <h2 id="step-1-go-into-the-public_html-directory">Step 1. Go into the <code>public_html</code> directory</h2>
@@ -336,7 +333,7 @@ function save_data_csv() {
 
 <h3 id="change-6-sending-the-results-file-upon-completion">Change 6: Sending the results file upon completion</h3>
 <p>The <code>on_finish</code> callback can be declared in the <code>jsPsych.init</code> method. 
-For details, see <a href="https://www.jspsych.org/overview/callbacks/#on_finish-experiment">the original jsPsych tutorial</a>.
+For details, see <a href="https://www.jspsych.org/6.3/overview/callbacks/#on_finish-experiment">the original jsPsych v6.3 tutorial</a>.
 The callback will trigger once all trials in the experiment have been run, so it is a great place to call save functions.</p>
 <p><strong>NOTE: Here, both <code>save_data_json()</code> and <code>save_data_csv()</code> were called to show how these can be used. Choose one.</strong></p>
 <pre><code class="js">    jsPsych.init({
@@ -735,10 +732,10 @@ You need to replace <code>hello-world</code> with your own experiment/directory.
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../save-dropbox/" class="btn btn-neutral float-right" title="Saving Data to your Dropbox">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../participants/" class="btn btn-neutral float-right" title="Recruiting Participants">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../hello-world/" class="btn btn-neutral" title="Embedding Hello World!"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../rt-task/" class="btn btn-neutral" title="Embedding Reaction-Time Task"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -766,10 +763,10 @@ You need to replace <code>hello-world</code> with your own experiment/directory.
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../hello-world/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../rt-task/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../save-dropbox/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../participants/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
