@@ -1,6 +1,8 @@
 // Use JSDELIVR to get the files from a GitHub repository
 // https://cdn.jsdelivr.net/gh/<github-username>/<repository-name>/
-var repo_site = "https://cdn.jsdelivr.net/gh/oliwia-ma/cog-flanker@tree/master/flanker/";
+//https://oliwia-ma.github.io/cog-flanker/
+//var repo_site = "https://cdn.jsdelivr.net/gh/oliwia-ma/cog-flanker@tree/master/flanker/";
+var repo_site = "https://oliwia-ma.github.io/cog-flanker/flanker/";
 
 /* experiment parameters */
 var reps_per_trial_type = 4;
