@@ -1,6 +1,6 @@
 // Use JSDELIVR to get the files from a GitHub repository
 // https://cdn.jsdelivr.net/gh/<github-username>/<repository-name>/
-var repo_site = "https://cdn.jsdelivr.net/gh/kywch/jsPsych-in-Qualtrics/flanker/";
+var repo_site = "https://github.com/oliwia-ma/cog-flanker/tree/master/flanker";
 
 /* experiment parameters */
 var reps_per_trial_type = 4;
@@ -8,17 +8,17 @@ var reps_per_trial_type = 4;
 /*set up welcome block*/
 var welcome = {
     type: "html-keyboard-response",
-    stimulus: "Welcome to the experiment. Press any key to begin."
+    stimulus: "Witamy w programie badawczym. Naciśnij dowolny klawisz, aby rozpocząć."
 };
 
 /*set up instructions block*/
 var instructions = {
     type: "html-keyboard-response",
-    stimulus: "<p>In this task, you will see five arrows on the screen, like the example below.</p>" +
+    stimulus: "<p>W tym zadaniu na ekranie zobaczysz pięć strzałek, jak na przykładzie poniżej.</p>" +
         "<img src='" + repo_site + "img/inc1.png'></img>" +
-        "<p>Press the left arrow key if the middle arrow is pointing left. (<)</p>" +
-        "<p>Press the right arrow key if the middle arrow is pointing right. (>)</p>" +
-        "<p>Press any key to begin.</p>",
+        "<p>Naciśnij klawisz strzałki w lewo, jeśli środkowa strzałka jest skierowana w lewo. (<)</p>" +
+        "<p>Naciśnij klawisz strzałki w prawo, jeśli środkowa strzałka jest skierowana w prawo. (>)</p>" +
+        "<p>Naciśnij dowolny klawisz, aby rozpocząć.</p>",
     post_trial_gap: 1000
 };
 
@@ -99,10 +99,10 @@ var debrief = {
             correct: true,
             stim_type: 'incongruent'
         }).select('rt').mean());
-        return "<p>You responded correctly on <strong>" + accuracy + "%</strong> of the trials.</p> " +
-            "<p>Your average response time for congruent trials was <strong>" + congruent_rt + "ms</strong>.</p>" +
-            "<p>Your average response time for incongruent trials was <strong>" + incongruent_rt + "ms</strong>.</p>" +
-            "<p>Press any key to complete the experiment. Thank you!</p>";
+        return "<p>Odpowiedziałeś poprawnie na  <strong>" + accuracy + "%</strong> zadań.</p> " +
+            "<p>Twój średni czas reakcji dla zadań spójnych wyniósł <strong>" + congruent_rt + "ms</strong>.</p>" +
+            "<p>Twój średni czas reakcji dla zadań niespójnych wyniósł  <strong>" + incongruent_rt + "ms</strong>.</p>" +
+            "<p>Naciśnij dowolny klawisz, aby zakończyć eksperyment. Dziękuję!</p>";
     }
 };
 
